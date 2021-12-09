@@ -28,7 +28,7 @@ case '/':
 case '':
 case 'index':
     case 'welkom':
-require __DIR__ . '/webpage/index.php';
+require __DIR__ . '/webpage/login.php';
 break;
 case 'admin':
 require __DIR__ . '/webpage/admin.php';

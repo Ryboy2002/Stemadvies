@@ -1,17 +1,92 @@
-/*
-#main-container{
-    display: grid;
+@font-face {
+    src: url("fonts/static/OpenSans");
+    font-family: 'Open Sans', sans-serif;
 }
-.imgBg{
-    display: grid;
-    width: 100%;
-    height:260px;
+
+
+html, body {
+    font-family: 'Open Sans', sans-serif !important;
 }
-.balk1{
-    background-color: darkblue;
-    grid-row: 1;
+
+
+.container-right {
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: left top;
+    box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);
+}
+
+.title_Stemadvies {
+    font-size: 60px;
+    font-family: "Open Sans", sans-serif;
+    padding-left: 124px;
+    color:#000000;
+    font-weight: 500;
+}
+
+.logo_Stemadvies {
+    height: 74px;
+    width:  100px;
+    border-radius: 22px;
 
 }
-.balk2 {
-    background-color: darkblue;
-}*/
+
+#div_title {
+    margin-top: 40px;
+    margin-left: 163px;
+}
+#div_login {
+    margin-left: 163px;
+    font-size: 70px;
+    font-weight: bold;
+    color:#000000;
+}
+
+#formLogin {
+    margin-left: 163px;
+}
+
+#formLogin label {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.blue {
+    color: #0B1F8F;
+}
+
+#formLogin input {
+    width: 634px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.input_text {
+    border-color: #707070;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+#formLogin {
+    margin-top: 50px;
+}
+
+#span_password {
+    margin-top: 30px;
+}
+
+.input_submit {
+    background: #0B1F8F;
+    color: white;
+    font-size: 25px;
+    margin-top: 40px;
+}
+
+#copyright {
+    color: #9B9B9B;
+    font-size: 22px;
+    margin-left: 163px;
+    margin-top: 160px;
+}
+
