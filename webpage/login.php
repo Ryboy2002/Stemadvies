@@ -42,9 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div id="div_login">Log in</div>
             <form action="" method="post" id="formLogin">
                 <label id="span_email" for="email">Email<span class="blue">*</span></label><br>
-                <input class="input_text" type="text" id="email" name="email" value=""><br>
+                <input class="input_text" type="text" id="email" name="email" value="" required="required"><br>
                 <label id="span_password" for="password">Password<span class="blue">*</span></label><br>
-                <input class="input_text" type="password" id="password" name="password" value=""><br><br>
+                <input class="input_text" type="password" id="password" name="password" value="" required="required"><br><br>
                 <input class="input_submit" type="submit" value="Log in">
             </form>
             <div id="copyright">© StemAdvies Alle rechten voorbehouden.</div>
