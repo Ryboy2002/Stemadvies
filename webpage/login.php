@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row" style="height:100vh">
-        <div class="col-lg-6 container-left" style="background-color: white;">
+    <div class="row" style="height:100vh;">
+        <div class="col-lg-6 container-left" style="background-color: white; max-width: 650px; margin: auto">
             <div id="div_title"><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
                 <p class="title_Stemadvies">StemAdvies</p>
             </div>
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input class="input_text" type="password" id="password" name="password" value="" required="required"><br><br>
                 <input class="input_submit" type="submit" value="Log in">
             </form>
-            <div id="copyright">© StemAdvies Alle rechten voorbehouden.</div>
+            <div class="copyright">© StemAdvies Alle rechten voorbehouden.</div>
         </div>
         <div class="col-lg-6 container-right" style="background-color: aqua">
 

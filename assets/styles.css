@@ -34,17 +34,17 @@ html, body {
 
 #div_title {
     margin-top: 40px;
-    margin-left: 163px;
+    /*margin-left: 163px;*/
 }
 #div_login {
-    margin-left: 163px;
+   /* margin-left: 163px;*/
     font-size: 70px;
     font-weight: bold;
     color:#000000;
 }
 
 #formLogin {
-    margin-left: 163px;
+    /*margin-left: 163px;*/
 }
 
 #formLogin label {
@@ -58,7 +58,7 @@ html, body {
 
 #formLogin input {
     /*width: 634px;*/
-    width: 80%;
+    width: 100%;
     height: 80px;
     border-radius: 40px;
 }
@@ -84,16 +84,16 @@ html, body {
     margin-top: 40px;
 }
 
-#copyright {
+.copyright {
     color: #9B9B9B;
     font-size: 22px;
-    margin-left: 163px;
+ /*   margin-left: 163px;*/
     margin-top: 160px;
 }
 
 header, footer {
     background: #0B1F8F;
-    height: 10vh;
+    height: 12vh;
 }
 
 footer {
@@ -101,4 +101,9 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.containerWidth {
+    max-width: 955px;
+    margin: auto;
 }

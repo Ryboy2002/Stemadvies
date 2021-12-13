@@ -14,10 +14,12 @@
 <body>
 
 <header>
-
+<div class="container"></div>
 </header>
 <footer>
-
+<div class="container">
+    <div class="copyright">© StemAdvies Alle rechten voorbehouden.</div>
+</div>
 </footer>
 </body>
 </html>
