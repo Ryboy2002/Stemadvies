@@ -5,16 +5,16 @@ $_SESSION["id"] = 3;
 
 require (__DIR__ ."/includes/classloader.php");
 
-//(new EnvReader(__DIR__ . '/.env'))->load();
+(new EnvReader(__DIR__ . '/.env'))->load();
 
 $source = $_SERVER['DOCUMENT_ROOT'];
 $dir = $source . '/elements/';
 require($dir . "elementfunctions.php");
 
-//$database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
-//$db = $database->getConnection();
-//$sqlQuery = new Sql($db);
-//$databases;
+$database = new Dbconfig(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASSWORD"), getenv("DB_NAME"));
+$db = $database->getConnection();
+$sqlQuery = new Sql($db);
+$databases;
 
 $dir = __DIR__;
 

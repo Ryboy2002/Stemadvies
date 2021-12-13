@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: /admin");
         } else {
             $error = 1;
+            var_dump($password, $row["password"]);
         }
     endwhile;
 }
