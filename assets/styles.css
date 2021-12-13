@@ -58,7 +58,7 @@ html, body {
 
 #formLogin input {
     /*width: 634px;*/
-    width: 100%;
+    width: 80%;
     height: 80px;
     border-radius: 40px;
 }
