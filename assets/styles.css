@@ -6,6 +6,8 @@
 
 html, body {
     font-family: 'Open Sans', sans-serif !important;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 
@@ -14,10 +16,9 @@ html, body {
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position: left top;
-    box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);
 }
 
-.title_Stemadvies {
+#title_Stemadvies {
     font-size: 60px;
     font-family: "Open Sans", sans-serif;
     padding-left: 124px;
@@ -25,26 +26,37 @@ html, body {
     font-weight: 500;
 }
 
-.logo_Stemadvies {
+.title_Stemadvies {
+    font-size: 60px;
+    font-family: "Open Sans", sans-serif;
+    padding-left: 124px;
+    color:#FFFF;
+    font-weight: 500;
+    position: absolute;
+    top: 1%;
+}
+
+#logo_Stemadvies {
     height: 74px;
     width:  100px;
     border-radius: 22px;
+}
 
+.logo_Stemadvies {
+    height: 74px;
+    width:  99px;
+    border-radius: 22px;
+    position: absolute;
+    top: 2%;
 }
 
 #div_title {
     margin-top: 40px;
-    /*margin-left: 163px;*/
 }
 #div_login {
-   /* margin-left: 163px;*/
     font-size: 70px;
     font-weight: bold;
     color:#000000;
-}
-
-#formLogin {
-    /*margin-left: 163px;*/
 }
 
 #formLogin label {
@@ -57,7 +69,6 @@ html, body {
 }
 
 #formLogin input {
-    /*width: 634px;*/
     width: 100%;
     height: 80px;
     border-radius: 40px;
@@ -85,9 +96,14 @@ html, body {
 }
 
 .copyright {
+    color: #D1D1D1;
+    position: absolute;
+    top: 40%;
+}
+
+#copyright {
     color: #9B9B9B;
     font-size: 22px;
- /*   margin-left: 163px;*/
     margin-top: 160px;
 }
 
@@ -106,4 +122,34 @@ footer {
 .containerWidth {
     max-width: 955px;
     margin: auto;
+}
+
+.crud {
+    background-color: rgba(255,255,255, 62%);
+}
+
+.background {
+    box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);
+    height: 76vh;
+}
+
+.loguit {
+    font-size: 60px;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    float: right;
+    margin-top: 1%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.test {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
