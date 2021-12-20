@@ -1,0 +1,1 @@
+SELECT statement.subject, statement.statement, party.name, party.img, statement.agree, statement.impartial, statement.disagree FROM `statement` inner join party;
