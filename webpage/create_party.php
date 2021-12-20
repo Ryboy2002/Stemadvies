@@ -210,7 +210,7 @@
 
 </head>
 <body>
-<?php require_once '../classes/partyAdd.php'?>
+<?php require_once '../classes/queryAdd.php';addQuery();?>
 <div id="container">
      <img class="imgBackground" src="../assets/images/tweede-kamer.png">
     <div class="titlebar">
