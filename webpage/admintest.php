@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Stelling toevoegen | Stemadvies</title>
 
         <style>
@@ -206,13 +205,36 @@
                 grid-row: 1/4;
                 grid-column: 1/6;
             }
+            .table {
+                border: 3px solid white;
+                grid-row: 2/4;
+                grid-column: 4/7;
+                color: white;
 
+            }
+            td,
+            th {
+                border: 2px solid white;
+            }
+        .imgAdd {
+            width: 20%;
+            margin-left: 35%;
+        }
+        button{
+            background: transparent;
+            width: 40%;
+
+        }
+        .icon{
+            width: 40%;
+        }
 
         </style>
 
     </head>
     <body>
     <?php require_once '../classes/queryAdd.php'; addQuery();?>
+    <div class="background">
     <div id="container">
         <img class="imgBackground" src="../assets/images/tweede-kamer.png">
         <div class="titlebar">
@@ -221,7 +243,7 @@
             <label class="lblUitloggen" onclick="location.href='login.php'">Uitloggen</label>
         </div>
 
-        <form method="post" action="">
+        <!--<form method="post" action="">
             <div class="form-groupStart">
                 <label style="text-align: center; font-weight: bold; color: white;">Stelling toevoegen</label>
             </div>
@@ -242,21 +264,48 @@
             </div>
             <div class="form-group6">
                 <input type="text" style="opacity: 1;" class="form-control inputOpinion" name="party_opinion" disabled title="Toevoegen van partijmening is pas bij wijzigen stelling mogelijk!">
-                 <img class="imgIconDenied" src="https://img.icons8.com/ios-filled/100/000000/no-entry.png">
+                <img class="imgIconDenied" src="https://img.icons8.com/ios-filled/100/000000/no-entry.png">
 
             </div>
 
             <div class="form-group">
                 <button type="submit" style="opacity: 1; margin-bottom: 2%; margin-top: -0.5%;" class="form-control" name="opslaan">Opslaan</button>
             </div>
-        </form>
+        </form>-->
+<?php
+$mysqli = new mysqli("localhost", "root", "", "stemadvies");
+$result = $mysqli ->query("SELECT * FROM party") or die($mysqli->error);
+?>
+        <table class="table" style="background: red; padding: 1%;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Naam</th>
+            </tr>
+            </thead>
+<?php while($row = $result->fetch_assoc()):?>
+    <tr>
+        <td><?php echo $row['id'];?></td>
+        <td><?php echo $row['name'];?></td>
+        <td><button><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></td>
+    </tr>
+
+
+            <?php endwhile;?>
+<tr>
+    <td></td>
+    <td></td>
+    <td><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></td>
+</tr>
+    </table>
         <div class="footerbar">
             <label class="lblFooterText">© Stemadvies Alle rechten voorbehouden.</label>
         </div>
     </div>
 
-
+    </div>
     </body>
     </html>
 <?php
+
 

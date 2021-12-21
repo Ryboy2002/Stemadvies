@@ -211,6 +211,19 @@
 </head>
 <body>
 <?php require_once '../classes/queryAdd.php';addQuery();?>
+<?php
+$mysqli = new mysqli('localhost', 'root', '', 'stemadvies') or die(mysqli_error($mysqli));
+$result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
+
+print_r($result->fetch_assoc());
+print_r($result->fetch_assoc());
+print_r($result->fetch_assoc());
+print_r($result->fetch_assoc());
+
+
+
+?>
+
 <div id="container">
      <img class="imgBackground" src="../assets/images/tweede-kamer.png">
     <div class="titlebar">
@@ -218,6 +231,8 @@
      <label class="lblTitle">StemAdvies</label>
         <label class="lblUitloggen" onclick="location.href='login.php'">Uitloggen</label>
     </div>
+
+
 
     <form method="post" action="">
         <div class="form-groupStart">
