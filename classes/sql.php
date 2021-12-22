@@ -22,4 +22,16 @@ class Sql {
         $stmt->execute([$email]);
         return $stmt;
     }
+
+    public function getAllParty() {
+        $stmt = $this->conn->prepare("SELECT * FROM party;");
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function numParty() {
+        $stmt = $this->conn->prepare("SELECT * FROM party;");
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }

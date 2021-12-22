@@ -125,7 +125,11 @@ footer {
 }
 
 .crud {
-    background-color: rgba(255,255,255, 62%);
+    background-color: rgba(255,255,255,.40);
+    margin-top: 13%;
+    border: 3px solid #ffffff;
+    border-radius: 20px;
+    font-size: 40px;
 }
 
 .background {
@@ -148,8 +152,32 @@ footer {
     background-repeat: no-repeat;
 }
 
-.test {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.col_ID_Party {
+    border-right: 3px solid white;
+    max-width: 100px;
+}
+
+.col_ID_Statements {
+    border-right: 3px solid white;
+    max-width: 100px;
+}
+
+.col_Party {
+    border-right: 3px solid white;
+}
+
+.col_Statements {
+    border-right: 3px solid white;
+}
+
+.border_top {
+    border-top: 3px solid white;
+}
+
+.hide {
+    content-visibility: hidden;
+}
+
+.button_add {
+    text-align: center;
 }

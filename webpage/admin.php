@@ -1,6 +1,10 @@
+<?php
+$style = '<link rel="stylesheet" href="../assets/styles.css">';
+?>
 <!doctype html>
 <html lang="en">
 <head>
+    <?=dd_head("Admin", $style)?>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -29,42 +33,92 @@
     <button class="loguit">Uitloggen</button></div>
 </div>
 </header>
+<?php
+$result = $sqlQuery->getAllParty();
+$num_party = $sqlQuery->numParty();
+?>
 <div class="background">
     <div class="container">
-        <div class="row">
+      <div class="row">
+
             <div class="col mx-2 crud">
                 <div class="row">
-                    <div class="col">ID</div>
-                    <div class="col">Partij</div>
+                    <div class="col col_ID_Party">ID</div>
+                    <div class="col col_Party">Partij</div>
+                    <div class="col"></div>
+                </div>
+                <?php while($row = $result->fetch()):?>
+                    <div class="row">
+                        <div class="col col_ID_Party border_top"><?php echo $row['id'];?></div>
+                        <div class="col col_Party border_top"><?php echo $row['name'];?></div>
+                        <div class="col border_top"><button><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
+                    </div>
+
+
+                <?php endwhile;?>
+                <div class="row" id="row_party_add">
+                    <div class="col col_ID_Statements border_top"></div>
+                    <div class="col col_Statements border_top"></div>
+                    <div class="col border_top button_add"><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></div>
+                </div>
+              <!--  <div class="row">
+                    <div class="col col_ID_Party border_top">1</div>
+                    <div class="col col_Party border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
+                </div>
+                <div class="row">
+                    <div class="col col_ID_Party border_top">2</div>
+                    <div class="col col_Party border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
+                </div>
+                <div class="row">
+                    <div class="col col_ID_Party border_top">3</div>
+                    <div class="col col_Party border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
+                </div>
+                <div class="row">
+                    <div class="col col_ID_Party border_top">4</div>
+                    <div class="col col_Party border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
+                </div>
+                <div class="row">
+                    <div class="col col_ID_Party border_top">5</div>
+                    <div class="col col_Party border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
+                </div>-->
+            </div>
+
+            <div class="col mx-2 crud">
+                <div class="row">
+                    <div class="col col_ID_Statements">ID</div>
+                    <div class="col col_Statements">Partij</div>
                     <div class="col"></div>
                 </div>
                 <div class="row">
-                    <div class="col">1</div>
-                    <div class="col">Test2</div>
-                    <div class="col">Test3</div>
+                    <div class="col col_ID_Statements border_top">1</div>
+                    <div class="col col_Statements border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
                 </div>
                 <div class="row">
-                    <div class="col">2</div>
-                    <div class="col">Test2</div>
-                    <div class="col">Test3</div>
+                    <div class="col col_ID_Statements border_top">2</div>
+                    <div class="col col_Statements border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
                 </div>
                 <div class="row">
-                    <div class="col">3</div>
-                    <div class="col">Test2</div>
-                    <div class="col">Test3</div>
+                    <div class="col col_ID_Statements border_top">3</div>
+                    <div class="col col_Statements border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
                 </div>
                 <div class="row">
-                    <div class="col">4</div>
-                    <div class="col">Test2</div>
-                    <div class="col">Test3</div>
+                    <div class="col col_ID_Statements border_top">4</div>
+                    <div class="col col_Statements border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
                 </div>
                 <div class="row">
-                    <div class="col">5</div>
-                    <div class="col">Test2</div>
-                    <div class="col">Test3</div>
+                    <div class="col col_ID_Statements border_top">5</div>
+                    <div class="col col_Statements border_top">Test2</div>
+                    <div class="col border_top">Test3</div>
                 </div>
-            </div>
-            <div class="col mx-2 crud">
 
             </div>
         </div>
@@ -75,6 +129,17 @@
     <div class="copyright">© StemAdvies Alle rechten voorbehouden.</div>
 </div>
 </footer>
+<script type="text/javascript">
+    var num_party = <?php echo $num_party; ?>;
+    console.log(num_party);
+    if (num_party > 4) {
+        var element = document.getElementById("row_party_add");
+        element.classList.add("hide");
+    } else {
+        var element = document.getElementById("row_party_add");
+        element.classList.remove("hide");
+    }
+</script>
 </body>
 </html>
 <?php

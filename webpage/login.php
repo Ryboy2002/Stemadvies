@@ -1,8 +1,8 @@
 <?php
 $style = '<link rel="stylesheet" href="/assets/styles.css">';
-if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+/*if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /home");
-}
+}*/
 
 $error = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: /admin");
         } else {
             $error = 1;
-            var_dump($password, $row["password"]);
         }
     endwhile;
 }
