@@ -21,6 +21,8 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
         background-repeat: no-repeat;
         background-size: cover;
         background-position: left top;
+        min-height: 1200px;
+        box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);
     }
 </style>
 <body>
@@ -34,8 +36,9 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 </div>
 </header>
 <?php
-$result = $sqlQuery->getAllParty();
+$result_party = $sqlQuery->getAllParty();
 $num_party = $sqlQuery->numParty();
+$result_statement = $sqlQuery->getAllStatements();
 ?>
 <div class="background">
     <div class="container">
@@ -47,10 +50,10 @@ $num_party = $sqlQuery->numParty();
                     <div class="col col_Party">Partij</div>
                     <div class="col"></div>
                 </div>
-                <?php while($row = $result->fetch()):?>
+                <?php while($row_party = $result_party->fetch()):?>
                     <div class="row">
-                        <div class="col col_ID_Party border_top"><?php echo $row['id'];?></div>
-                        <div class="col col_Party border_top"><?php echo $row['name'];?></div>
+                        <div class="col col_ID_Party border_top"><?php echo $row_party['id'];?></div>
+                        <div class="col col_Party border_top"><?php echo $row_party['name'];?></div>
                         <div class="col border_top"><button><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
                     </div>
 
@@ -61,74 +64,32 @@ $num_party = $sqlQuery->numParty();
                     <div class="col col_Statements border_top"></div>
                     <div class="col border_top button_add"><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></div>
                 </div>
-              <!--  <div class="row">
-                    <div class="col col_ID_Party border_top">1</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">2</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">3</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">4</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">5</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>-->
             </div>
 
             <div class="col mx-2 crud">
                 <div class="row">
                     <div class="col col_ID_Statements">ID</div>
-                    <div class="col col_Statements">Partij</div>
+                    <div class="col col_Statements">Stelling</div>
                     <div class="col"></div>
                 </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">1</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">2</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">3</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">4</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">5</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
+                <?php while($row_statement = $result_statement->fetch()):?>
+                    <div class="row">
+                        <div class="col col_ID_Party border_top"><?php echo $row_statement['id'];?></div>
+                        <div class="col col_Party border_top"><?php echo $row_statement['subject'];?></div>
+                        <div class="col border_top"><a href="editStatements?id=<?php echo $row_statement['id'];?>"><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
+                    </div>
 
+
+                <?php endwhile;?>
+                <div class="row" id="row_party_add">
+                    <div class="col col_ID_Statements border_top"></div>
+                    <div class="col col_Statements border_top"></div>
+                    <div class="col border_top button_add"><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<footer>
-<div class="container">
-    <div class="copyright">© StemAdvies Alle rechten voorbehouden.</div>
-</div>
-</footer>
 <script type="text/javascript">
     var num_party = <?php echo $num_party; ?>;
     console.log(num_party);
@@ -141,5 +102,10 @@ $num_party = $sqlQuery->numParty();
     }
 </script>
 </body>
+<footer>
+    <div class="container">
+        <div class="copyright">© StemAdvies Alle rechten voorbehouden.</div>
+    </div>
+</footer>
 </html>
 <?php

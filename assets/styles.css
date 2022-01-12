@@ -8,6 +8,7 @@ html, body {
     font-family: 'Open Sans', sans-serif !important;
     max-width: 100%;
     overflow-x: hidden;
+    height: 100vh;
 }
 
 
@@ -33,7 +34,7 @@ html, body {
     color:#FFFF;
     font-weight: 500;
     position: absolute;
-    top: 1%;
+    top: 0.5rem;
 }
 
 #logo_Stemadvies {
@@ -47,7 +48,7 @@ html, body {
     width:  99px;
     border-radius: 22px;
     position: absolute;
-    top: 2%;
+    top: 0.5rem;
 }
 
 #div_title {
@@ -112,6 +113,11 @@ header, footer {
     height: 12vh;
 }
 
+header {
+    position: fixed;
+    width: 100%;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -127,14 +133,28 @@ footer {
 .crud {
     background-color: rgba(255,255,255,.40);
     margin-top: 13%;
+    margin-bottom: 13%;
     border: 3px solid #ffffff;
     border-radius: 20px;
     font-size: 40px;
+    overflow: auto;
+    min-height: 700px;
+}
+
+.crudEdit {
+    background-color: rgba(255,255,255,.40);
+    margin-top: 13%;
+    margin-bottom: 13%;
+    border: 3px solid #ffffff;
+    border-radius: 20px;
+    font-size: 2rem;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 .background {
-    box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);
-    height: 76vh;
+   /* box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);*/
+   /* height: 76vh;*/
 }
 
 .loguit {
@@ -143,7 +163,7 @@ footer {
     font-family: "Open Sans", sans-serif;
     color: white;
     float: right;
-    margin-top: 1%;
+    margin-top: 0.5rem;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -181,3 +201,36 @@ footer {
 .button_add {
     text-align: center;
 }
+
+.border_right {
+    border: 3px solid white;
+}
+
+input[type='file'] {
+    opacity:0;
+    width: 0;
+    overflow: hidden;
+    filter:alpha(opacity=0);
+    display: inline;
+    position: absolute
+}
+
+#button {
+    background: #0B1F8F;
+    color: white;
+}
+/*
+@media only screen and (max-height: 851px) {
+   !* footer {
+        bottom: 0;
+    }*!
+
+    .background {
+        box-shadow: inset 0 0 0 1000px rgba(11,31,143,.62);
+         height: 76vh;
+    }
+
+    body {
+        overflow-y: hidden;
+    }
+}*/

@@ -33,6 +33,9 @@ break;
 case 'admin':
 require __DIR__ . '/webpage/admin.php';
 break;
+case 'editStatements':
+require __DIR__ . '/webpage/editStatements.php';
+break;
 case 'login':
 require __DIR__ . '/webpage/login.php';
 break;

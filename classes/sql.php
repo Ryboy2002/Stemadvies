@@ -24,13 +24,25 @@ class Sql {
     }
 
     public function getAllParty() {
-        $stmt = $this->conn->prepare("SELECT * FROM party;");
+        $stmt = $this->conn->prepare("SELECT * FROM `party`;");
         $stmt->execute();
         return $stmt;
     }
 
+    public function getAllStatements() {
+        $stmt = $this->conn->prepare("SELECT * FROM `statement`;");
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function getStatement($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM `statement` WHERE `id` = ?;");
+        $stmt->execute($id);
+        return $stmt;
+    }
+
     public function numParty() {
-        $stmt = $this->conn->prepare("SELECT * FROM party;");
+        $stmt = $this->conn->prepare("SELECT * FROM `party`;");
         $stmt->execute();
         return $stmt->rowCount();
     }
