@@ -36,7 +36,11 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 <?php
 $result = $sqlQuery->getAllParty();
 $num_party = $sqlQuery->numParty();
-?>
+$resultStatements = $sqlQuery->getAllStatements();
+
+//$deletePartyRow = $sqlQuery->deletePartyRow();
+ ?>
+
 <div class="background">
     <div class="container">
       <div class="row">
@@ -51,7 +55,10 @@ $num_party = $sqlQuery->numParty();
                     <div class="row">
                         <div class="col col_ID_Party border_top"><?php echo $row['id'];?></div>
                         <div class="col col_Party border_top"><?php echo $row['name'];?></div>
-                        <div class="col border_top"><button><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
+
+                        <?php $id = $row['id'] ?>
+                    <?php /*$deleteParty = $sqlQuery->deletePartyRow($id) */?>
+                        <div class="col border_top"><button onclick=""><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
                     </div>
 
 
@@ -88,23 +95,27 @@ $num_party = $sqlQuery->numParty();
                 </div>-->
             </div>
 
-            <div class="col mx-2 crud">
+            <div class="col mx-2 crud" style="overflow-y: scroll; overflow-x: auto">
                 <div class="row">
                     <div class="col col_ID_Statements">ID</div>
-                    <div class="col col_Statements">Partij</div>
+                    <div class="col col_Statements"></div>
                     <div class="col"></div>
                 </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">1</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
+        <?php while($row = $resultStatements->fetch()):?>
+
+            <div class="row">
+                    <div class="col col_ID_Statements border_top"><?php echo $row['id'];?></div>
+                    <div class="col col_Statements border_top"><?php echo $row['subject'];?></div>
+                    <div class="col border_top"></div>
                 </div>
+
+        <?php endwhile;?>
                 <div class="row">
-                    <div class="col col_ID_Statements border_top">2</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
+                    <div class="col col_ID_Statements border_top"></div>
+                    <div class="col col_Statements border_top"></div>
+                    <div class="col border_top"></div>
                 </div>
-                <div class="row">
+               <!-- <div class="row">
                     <div class="col col_ID_Statements border_top">3</div>
                     <div class="col col_Statements border_top">Test2</div>
                     <div class="col border_top">Test3</div>
@@ -118,7 +129,7 @@ $num_party = $sqlQuery->numParty();
                     <div class="col col_ID_Statements border_top">5</div>
                     <div class="col col_Statements border_top">Test2</div>
                     <div class="col border_top">Test3</div>
-                </div>
+                </div>-->
 
             </div>
         </div>
@@ -136,9 +147,12 @@ $num_party = $sqlQuery->numParty();
         var element = document.getElementById("row_party_add");
         element.classList.add("hide");
     } else {
-        var element = document.getElementById("row_party_add");
+         element = document.getElementById("row_party_add");
         element.classList.remove("hide");
     }
+
+
+
 </script>
 </body>
 </html>

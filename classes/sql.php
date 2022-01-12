@@ -34,4 +34,18 @@ class Sql {
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    public function deletePartyRow($id){
+        $stmt = $this->conn->prepare("DELETE FROM party WHERE id = $id;");
+        $stmt->execute();
+        return $stmt;
+
+    }
+
+    public function getAllStatements(){
+        $stmt = $this->conn->prepare("SELECT * FROM statement;");
+        $stmt->execute();
+        return $stmt;
+    }
+
 }

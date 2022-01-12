@@ -237,7 +237,7 @@ $style = '<link rel="stylesheet" href="/assets/styles.css">';
 
     </head>
     <body>
-    <?php require_once '../classes/queryAdd.php'; addQuery();?>
+    <?php require_once $dir.'/classes/queryAdd.php'; addQuery();?>
     <div class="background">
     <div id="container">
         <img class="imgBackground" src="../assets/images/tweede-kamer.png">
