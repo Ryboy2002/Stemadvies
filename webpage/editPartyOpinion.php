@@ -9,7 +9,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
     <!doctype html>
     <html lang="en">
     <head>
-        <?=dd_head("editStatements", $style)?>
+        <?=dd_head("editPartyOpinion", $style)?>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -49,7 +49,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
             <div class="row">
                 <form action="" method="post">
                     <div class="mx-2 crudEdit" align="center">
-                        <div>Stellingen wijzigen</div>
+                        <div>Partijmening</div>
 
                         <div class="row">
                             <div class="col border_right">Partij</div>
@@ -64,7 +64,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
                         </div>
                         <div class="row">
-                            <div class="col border_right">Stelling wijzigen</div>
+                            <div class="col border_right">Partijmening</div>
                             <div class="col">
                                 <select id="opinion" name="opinion" form="opinionform">
                                     <option value="1">Eens</option>
