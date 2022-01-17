@@ -68,31 +68,6 @@ $resultStatements = $sqlQuery->getAllStatements();
                     <div class="col col_Statements border_top"></div>
                     <div class="col border_top button_add"><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></div>
                 </div>
-              <!--  <div class="row">
-                    <div class="col col_ID_Party border_top">1</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">2</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">3</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">4</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">5</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>-->
             </div>
 
             <div class="col mx-2 crud" style="overflow-y: scroll; overflow-x: auto">
@@ -106,31 +81,12 @@ $resultStatements = $sqlQuery->getAllStatements();
             <div class="row">
                     <div class="col col_ID_Statements border_top"><?php echo $row['id'];?></div>
                     <div class="col col_Statements border_top"><?php echo $row['subject'];?></div>
-                    <div class="col border_top"></div>
+                    <div class="col border_top">
+                        <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a>
+                    </div>
                 </div>
 
         <?php endwhile;?>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top"></div>
-                    <div class="col col_Statements border_top"></div>
-                    <div class="col border_top"></div>
-                </div>
-               <!-- <div class="row">
-                    <div class="col col_ID_Statements border_top">3</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">4</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">5</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>-->
-
             </div>
         </div>
     </div>

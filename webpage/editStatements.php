@@ -1,9 +1,11 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
-/*if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
+$statement_ID = $_GET['id'];
+if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
+$result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statement_ID);
+}
 
-}*/
 
 ?>
     <!doctype html>
@@ -41,8 +43,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
         </div>
     </header>
     <?php
-   /* $result_Statement = $sqlQuery->getStatement($_GET['id']);*/
-    $result_party_names = $sqlQuery->nameParty();
+    $result_Statement = $sqlQuery->getStatement($_GET['id']);
     ?>
     <div class="background">
         <div class="container">
@@ -50,32 +51,24 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
                 <form action="" method="post">
                     <div class="mx-2 crudEdit" align="center">
                         <div>Stellingen wijzigen</div>
-
+                        <?php while($row_Statement = $result_Statement->fetch()):?>
                         <div class="row">
-                            <div class="col border_right">Partij</div>
+                            <div class="col border_right">Onderwerp</div>
                             <div class="col">
-                                <select id="party" name="party" form="partyform">
-                                    <?php while($row_statement = $result_party_names->fetch()):?>
-                                    <?php echo '<option value="'.$row_statement["name"].'">'.$row_statement["name"].'</option>'; ?>
-                                    <?php endwhile;?>
-                                </select>
-
+                                <input type="text" name="subject" value="<?=$row_Statement['subject']?>">
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col border_right">Stelling wijzigen</div>
+                            <div class="col border_right">Stelling</div>
                             <div class="col">
-                                <select id="opinion" name="opinion" form="opinionform">
-                                    <option value="1">Eens</option>
-                                    <option value="2">Geen mening</option>
-                                    <option value="3">Oneens</option>
-                                </select>
+                                    <input type="text" name="statement" value="<?=$row_Statement['statement']?>">
                             </div>
                         </div>
+                        <?php endwhile;?>
                         <div class="row">
-                            <div class="col border_right">Toelichting</div>
-                            <div class="col"><input type="text"></div>
+                            <div class="col border_right">Partijmening</div>
+                            <div class="col"> <a href="editPartyOpinion?id=<?=$_GET['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a></div>
                         </div>
                        <!-- <div class="row">
                             <div class="col-md-6 border_right">Logo</div>

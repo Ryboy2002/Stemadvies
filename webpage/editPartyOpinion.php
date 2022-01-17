@@ -41,7 +41,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
         </div>
     </header>
     <?php
-   /* $result_Statement = $sqlQuery->getStatement($_GET['id']);*/
+    $result_Statement = $sqlQuery->getStatement($_GET['id']);
     $result_party_names = $sqlQuery->nameParty();
     ?>
     <div class="background">
@@ -49,12 +49,15 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
             <div class="row">
                 <form action="" method="post">
                     <div class="mx-2 crudEdit" align="center">
-                        <div>Partijmening</div>
+                        <div><?php while($row_Statement = $result_Statement->fetch()):?>
+                                <?=$row_Statement['subject'];?>
+                            <?php endwhile;?></div>
 
                         <div class="row">
                             <div class="col border_right">Partij</div>
                             <div class="col">
                                 <select id="party" name="party" form="partyform">
+                                    <option value="" selected disabled hidden>Kies partij</option>
                                     <?php while($row_statement = $result_party_names->fetch()):?>
                                     <?php echo '<option value="'.$row_statement["name"].'">'.$row_statement["name"].'</option>'; ?>
                                     <?php endwhile;?>
@@ -77,14 +80,6 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
                             <div class="col border_right">Toelichting</div>
                             <div class="col"><input type="text"></div>
                         </div>
-                       <!-- <div class="row">
-                            <div class="col-md-6 border_right">Logo</div>
-                            <div class="col-md-6">
-                                <input type='file'/>
-                                <span id='val'></span>
-                                <span id='button'>Upload</span>
-                            </div>
-                        </div>-->
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
                         <input type="hidden" name="EditStatement" value="EditStatement">
 
