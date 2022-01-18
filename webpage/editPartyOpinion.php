@@ -5,6 +5,16 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
 }*/
 
+$result_reason = $sqlQuery->getAllReasons($_GET['id']);
+
+$reasonArray = Array();
+while($row_statement = $result_reason->fetch()):
+        $reasonRow = Array();
+        array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason']);
+        array_push($reasonArray,$reasonRow);
+        unset($reasonRow);
+endwhile;
+print_r($reasonArray);
 ?>
     <!doctype html>
     <html lang="en">

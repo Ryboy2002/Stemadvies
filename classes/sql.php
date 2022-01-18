@@ -35,6 +35,12 @@ class Sql {
         return $stmt;
     }
 
+    public function getAllReasons($statementid) {
+        $stmt = $this->conn->prepare("SELECT partyid,opinion,reason, party.name FROM reason INNER JOIN party ON party.id = reason.partyid WHERE statementid = ?");
+        $stmt->execute([$statementid]);
+        return $stmt;
+    }
+
     public function getStatement($id) {
         $stmt = $this->conn->prepare("SELECT * FROM `statement` WHERE `id` = ?;");
         $stmt->execute([$id]);
