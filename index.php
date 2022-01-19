@@ -39,6 +39,9 @@ break;
 case 'editPartyOpinion';
 require __DIR__ . '/webpage/editPartyOpinion.php';
 break;
+case 'editParty';
+require __DIR__ . '/webpage/editParty.php';
+break;
 case 'login':
 require __DIR__ . '/webpage/login.php';
 break;

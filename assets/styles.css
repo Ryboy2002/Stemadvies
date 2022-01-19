@@ -207,3 +207,8 @@ table {
 .button_add {
     text-align: center;
 }
+
+.buttonStyleHide {
+    background: none;
+    border: none;
+}
