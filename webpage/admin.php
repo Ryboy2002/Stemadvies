@@ -57,9 +57,8 @@ $resultStatements = $sqlQuery->getAllStatements();
                         <div class="col col_Party border_top"><?php echo $row['name'];?></div>
 
                         <?php $id = $row['id'] ?>
-
-
-                        <div class="col border_top"><button onclick=""><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button onclick="deleteRowParty(<?=$id?>)"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
+                    <?php /*$deleteParty = $sqlQuery->deletePartyRow($id) */?>
+                        <div class="col border_top"><button onclick=""><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button onclick="deleteRowParty(<?=$row['id']?>)"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
                     </div>
 
 
@@ -69,78 +68,25 @@ $resultStatements = $sqlQuery->getAllStatements();
                     <div class="col col_Statements border_top"></div>
                     <div class="col border_top button_add"><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></div>
                 </div>
-              <!--  <div class="row">
-                    <div class="col col_ID_Party border_top">1</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">2</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">3</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">4</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Party border_top">5</div>
-                    <div class="col col_Party border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>-->
             </div>
 
-           <!-- <div class="col mx-2 crud no-scrollbar" style="overflow-y: scroll; overflow-x: auto">
+            <div class="col mx-2 crud" style="overflow-y: scroll; overflow-x: auto">
                 <div class="row">
                     <div class="col col_ID_Statements">ID</div>
                     <div class="col col_Statements"></div>
                     <div class="col"></div>
-                </div>-->
-                <table class="col mx-2 crud no-scrollbar">
-                    <tr class="row">
-                        <th>ID</th>
-                        <th>Onderwerp</th>
-                    </tr>
+                </div>
+        <?php while($row = $resultStatements->fetch()):?>
 
-                    <?php while($row = $resultStatements->fetch()):?>
-
-                        <tr class="row">
-                <td class="col col_ID_Statements border_top"><?=$row['id'];?></td>
-                    <td class="col col_Statements border_top"><?=$row['subject']?></td>
-                    <td class="col border_top"></td>
-                        </tr>
+            <div class="row">
+                    <div class="col col_ID_Statements border_top"><?php echo $row['id'];?></div>
+                    <div class="col col_Statements border_top"><?php echo $row['subject'];?></div>
+                    <div class="col border_top">
+                        <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a>
+                    </div>
+                </div>
 
         <?php endwhile;?>
-                </table>
-               <!-- <div class="row">
-                    <div class="col col_ID_Statements border_top"></div>
-                    <div class="col col_Statements border_top"></div>
-                    <div class="col border_top"></div>
-                </div>-->
-
-
-               <!-- <div class="row">
-                    <div class="col col_ID_Statements border_top">3</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">4</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>
-                <div class="row">
-                    <div class="col col_ID_Statements border_top">5</div>
-                    <div class="col col_Statements border_top">Test2</div>
-                    <div class="col border_top">Test3</div>
-                </div>-->
-
             </div>
         </div>
     </div>
@@ -173,11 +119,12 @@ $resultStatements = $sqlQuery->getAllStatements();
         };
         fetch('/requests/deleteParty.php', opts).then(response => response.json())
             .then(data =>{
-                console.log(data)
-            }
+                    console.log(data)
+                }
 
-    );
+            );
     }
+
 
 
 </script>

@@ -1,17 +1,25 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
-$statement_ID = $_GET['id'];
-if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
-$result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statement_ID);
-}
+/*if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
 
+}*/
 
+$result_reason = $sqlQuery->getAllReasons($_GET['id']);
+
+$reasonArray = Array();
+while($row_statement = $result_reason->fetch()):
+        $reasonRow = Array();
+        array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason']);
+        array_push($reasonArray,$reasonRow);
+        unset($reasonRow);
+endwhile;
+print_r($reasonArray);
 ?>
     <!doctype html>
     <html lang="en">
     <head>
-        <?=dd_head("editStatements", $style)?>
+        <?=dd_head("editPartyOpinion", $style)?>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -44,40 +52,44 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
     </header>
     <?php
     $result_Statement = $sqlQuery->getStatement($_GET['id']);
+    $result_party_names = $sqlQuery->nameParty();
     ?>
     <div class="background">
         <div class="container">
             <div class="row">
                 <form action="" method="post">
                     <div class="mx-2 crudEdit" align="center">
-                        <div>Stellingen wijzigen</div>
-                        <?php while($row_Statement = $result_Statement->fetch()):?>
+                        <div><?php while($row_Statement = $result_Statement->fetch()):?>
+                                <?=$row_Statement['subject'];?>
+                            <?php endwhile;?></div>
+
                         <div class="row">
-                            <div class="col border_right">Onderwerp</div>
+                            <div class="col border_right">Partij</div>
                             <div class="col">
-                                <input type="text" name="subject" value="<?=$row_Statement['subject']?>">
+                                <select id="party" name="party" form="partyform">
+                                    <option value="" selected disabled hidden>Kies partij</option>
+                                    <?php while($row_statement = $result_party_names->fetch()):?>
+                                    <?php echo '<option value="'.$row_statement["name"].'">'.$row_statement["name"].'</option>'; ?>
+                                    <?php endwhile;?>
+                                </select>
+
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col border_right">Stelling</div>
-                            <div class="col">
-                                    <input type="text" name="statement" value="<?=$row_Statement['statement']?>">
-                            </div>
-                        </div>
-                        <?php endwhile;?>
-                        <div class="row">
                             <div class="col border_right">Partijmening</div>
-                            <div class="col"> <a href="editPartyOpinion?id=<?=$_GET['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a></div>
-                        </div>
-                       <!-- <div class="row">
-                            <div class="col-md-6 border_right">Logo</div>
-                            <div class="col-md-6">
-                                <input type='file'/>
-                                <span id='val'></span>
-                                <span id='button'>Upload</span>
+                            <div class="col">
+                                <select id="opinion" name="opinion" form="opinionform">
+                                    <option value="1">Eens</option>
+                                    <option value="2">Geen mening</option>
+                                    <option value="3">Oneens</option>
+                                </select>
                             </div>
-                        </div>-->
+                        </div>
+                        <div class="row">
+                            <div class="col border_right">Toelichting</div>
+                            <div class="col"><input type="text"></div>
+                        </div>
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
                         <input type="hidden" name="EditStatement" value="EditStatement">
 
