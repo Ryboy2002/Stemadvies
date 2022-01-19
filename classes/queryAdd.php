@@ -1,7 +1,7 @@
 <?php
 function addQuery()
 {
-    $mysqli = new mysqli('localhost', 'root', '', 'stemadvies') or die(mysqli_error($mysqli));
+    $mysqli = new mysqli('localhost', 'root', '', 'stemadviezen') or die(mysqli_error($mysqli));
     if (isset($_POST['create'])) {
         $partyName = $_POST['name'];
         $partyEstablished = $_POST['established'];

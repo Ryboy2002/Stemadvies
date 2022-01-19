@@ -7,9 +7,9 @@
 html, body {
     font-family: 'Open Sans', sans-serif !important;
     max-width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
+
 }
+
 
 
 .container-right {
@@ -134,6 +134,19 @@ footer {
     border-radius: 20px;
     font-size: 40px;
     height: 510px;
+
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+table {
+    height: 505px;
+    width: 100%;
 }
 
 .background {

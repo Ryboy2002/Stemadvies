@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "stemadvies");
+$conn = mysqli_connect("localhost", "root", "", "stemadviezen");
 $response = array();
 if($conn) {
     $sql = "SELECT * FROM reason";
@@ -17,7 +17,7 @@ if($conn) {
             $response[$i]['date_created'] = $row['date_created'];
             $i++;
         }
-        echo json_encode($response, JSON_PRETTY_PRINT);
+        echo json_encode($response);
 
 
     }

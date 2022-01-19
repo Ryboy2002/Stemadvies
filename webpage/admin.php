@@ -57,8 +57,9 @@ $resultStatements = $sqlQuery->getAllStatements();
                         <div class="col col_Party border_top"><?php echo $row['name'];?></div>
 
                         <?php $id = $row['id'] ?>
-                    <?php /*$deleteParty = $sqlQuery->deletePartyRow($id) */?>
-                        <div class="col border_top"><button onclick=""><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
+
+
+                        <div class="col border_top"><button onclick=""><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button onclick="deleteRowParty(<?=$id?>)"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
                     </div>
 
 
@@ -95,26 +96,35 @@ $resultStatements = $sqlQuery->getAllStatements();
                 </div>-->
             </div>
 
-            <div class="col mx-2 crud" style="overflow-y: scroll; overflow-x: auto">
+           <!-- <div class="col mx-2 crud no-scrollbar" style="overflow-y: scroll; overflow-x: auto">
                 <div class="row">
                     <div class="col col_ID_Statements">ID</div>
                     <div class="col col_Statements"></div>
                     <div class="col"></div>
-                </div>
-        <?php while($row = $resultStatements->fetch()):?>
+                </div>-->
+                <table class="col mx-2 crud no-scrollbar">
+                    <tr class="row">
+                        <th>ID</th>
+                        <th>Onderwerp</th>
+                    </tr>
 
-            <div class="row">
-                    <div class="col col_ID_Statements border_top"><?php echo $row['id'];?></div>
-                    <div class="col col_Statements border_top"><?php echo $row['subject'];?></div>
-                    <div class="col border_top"></div>
-                </div>
+                    <?php while($row = $resultStatements->fetch()):?>
+
+                        <tr class="row">
+                <td class="col col_ID_Statements border_top"><?=$row['id'];?></td>
+                    <td class="col col_Statements border_top"><?=$row['subject']?></td>
+                    <td class="col border_top"></td>
+                        </tr>
 
         <?php endwhile;?>
-                <div class="row">
+                </table>
+               <!-- <div class="row">
                     <div class="col col_ID_Statements border_top"></div>
                     <div class="col col_Statements border_top"></div>
                     <div class="col border_top"></div>
-                </div>
+                </div>-->
+
+
                <!-- <div class="row">
                     <div class="col col_ID_Statements border_top">3</div>
                     <div class="col col_Statements border_top">Test2</div>
@@ -150,7 +160,24 @@ $resultStatements = $sqlQuery->getAllStatements();
          element = document.getElementById("row_party_add");
         element.classList.remove("hide");
     }
+    function deleteRowParty(id){
+        data = {
+            "postID": id,
+        }
+        var opts = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json'
+            },
+        };
+        fetch('/requests/deleteParty.php', opts).then(response => response.json())
+            .then(data =>{
+                console.log(data)
+            }
 
+    );
+    }
 
 
 </script>
