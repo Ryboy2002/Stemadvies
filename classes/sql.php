@@ -66,7 +66,7 @@ class Sql {
     }
 
     public function deletePartyRow($id){
-        $stmt = $this->conn->prepare("DELETE FROM party WHERE id = ?;");
+        $stmt = $this->conn->prepare("SET foreign_key_checks = 0;DELETE FROM party WHERE id = ?;SET foreign_key_checks = 1");
         $stmt->execute([$id]);
         return $stmt;
 

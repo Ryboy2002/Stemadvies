@@ -58,7 +58,7 @@ $resultStatements = $sqlQuery->getAllStatements();
 
                         <?php $id = $row['id'] ?>
                     <?php /*$deleteParty = $sqlQuery->deletePartyRow($id) */?>
-                        <div class="col border_top"><button onclick=""><img class="icon" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></button> <button><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
+                        <div class="col border_top"><a href="editParty?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a> <button onclick="deleteRowParty(<?=$row['id']?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
                     </div>
 
 
@@ -107,8 +107,24 @@ $resultStatements = $sqlQuery->getAllStatements();
         element.classList.remove("hide");
     }
 
+    function deleteRowParty(id){
+        data = {
+            "postID": id,
+        }
+        var opts = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json'
+            },
+        };
+        fetch('/requests/deleteParty.php', opts).then(response => response.json())
+            .then(data =>{
+                    console.log(data)
+                }
 
-
+            );
+    }
 </script>
 </body>
 </html>
