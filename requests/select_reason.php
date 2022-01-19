@@ -2,7 +2,7 @@
 $conn = mysqli_connect("localhost", "root", "", "stemadviezen");
 $response = array();
 if($conn) {
-    $sql = "SELECT * FROM reason";
+    $sql = "SELECT * FROM reason ORDER BY statementid";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("Access-Control-Allow-Origin: *");
