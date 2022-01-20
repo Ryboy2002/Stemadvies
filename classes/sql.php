@@ -54,7 +54,7 @@ class Sql {
     }
 
     public function nameParty() {
-        $stmt = $this->conn->prepare("SELECT `name` FROM `party`;");
+        $stmt = $this->conn->prepare("SELECT `name`, `id` FROM `party`;");
         $stmt->execute();
         return $stmt;
     }
@@ -65,8 +65,15 @@ class Sql {
         return $stmt;
     }
 
+
+    public function editPartyOpinion($opinion, $reason, $partyid, $statementid) {
+        $stmt = $this->conn->prepare("UPDATE `reason` SET `opinion`= ? , reason = ?  WHERE partyid = ? AND statementid = ?;");
+        $stmt->execute([$opinion,$reason,$partyid,$statementid]);
+        return $stmt;
+    }
+
     public function deletePartyRow($id){
-        $stmt = $this->conn->prepare("SET foreign_key_checks = 0;DELETE FROM party WHERE id = ?;SET foreign_key_checks = 1");
+        $stmt = $this->conn->prepare("DELETE FROM party WHERE id = ?;");
         $stmt->execute([$id]);
         return $stmt;
 

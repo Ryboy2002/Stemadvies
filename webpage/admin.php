@@ -124,6 +124,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 }
 
             );
+        document.location.reload();
     }
 </script>
 </body>

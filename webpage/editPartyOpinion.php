@@ -1,16 +1,17 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
-/*if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
-
-}*/
+$statement_ID = $_GET['id'];
+if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPartyOpinion') {
+    $result = $sqlQuery->editPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
+}
 
 $result_reason = $sqlQuery->getAllReasons($_GET['id']);
 
 $reasonArray = Array();
 while($row_statement = $result_reason->fetch()):
         $reasonRow = Array();
-        array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason']);
+        array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason'], $row_statement['partyid']);
         array_push($reasonArray,$reasonRow);
         unset($reasonRow);
 endwhile;
@@ -65,10 +66,10 @@ endwhile;
                         <div class="row">
                             <div class="col border_right">Partij</div>
                             <div class="col">
-                                <select id="party" name="party" onchange="ChangeValue()" form="partyform">
+                                <select id="party" name="party" onchange="ChangeValue()" form="formPartyOpinion">
                                     <option value="" selected disabled hidden>Kies partij</option>
                                     <?php while($row_statement = $result_party_names->fetch()):?>
-                                    <?php echo '<option value="'.$row_statement["name"].'">'.$row_statement["name"].'</option>'; ?>
+                                    <?php echo '<option value="'.$row_statement["id"].'">'.$row_statement["name"].'</option>'; ?>
                                     <?php endwhile;?>
                                 </select>
 
@@ -78,7 +79,7 @@ endwhile;
                         <div class="row">
                             <div class="col border_right">Partijmening</div>
                              <div class="col">
-                                <select id="opinion" name="opinion" form="opinionform">
+                                <select id="opinion" name="opinion" form="formPartyOpinion">
                                     <option value="0">Geen mening</option>
                                     <option value="1">Eens</option>
                                     <option value="2">Neutraal</option>
@@ -88,10 +89,10 @@ endwhile;
                         </div>
                         <div class="row">
                             <div class="col border_right">Toelichting</div>
-                            <div class="col"><input id="toelichting" type="text"></div>
+                            <div class="col"><input id="reason" name="reason" type="text"></div>
                         </div>
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
-                        <input type="hidden" name="EditStatement" value="EditStatement">
+                        <input type="hidden" name="EditPartyOpinion" value="EditPartyOpinion">
 
                     </div>
                 </form>
@@ -118,9 +119,9 @@ endwhile;
             var strUser = e.value;
 
             for(var i = 0; i < passedArray.length; i++) {
-                if (strUser == passedArray[i][0]) {
+                if (strUser == passedArray[i][3]) {
                       document.getElementById("opinion").value = passedArray[i][1];
-                    document.getElementById("toelichting").value = passedArray[i][2];
+                    document.getElementById("reason").value = passedArray[i][2];
                 }
             }
         }
