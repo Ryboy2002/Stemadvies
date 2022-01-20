@@ -47,6 +47,12 @@ class Sql {
         return $stmt;
     }
 
+    public function getParty($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM `party` WHERE `id` = ?;");
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
     public function numParty() {
         $stmt = $this->conn->prepare("SELECT * FROM `party`;");
         $stmt->execute();

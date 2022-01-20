@@ -43,7 +43,7 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
         </div>
     </header>
     <?php
-    $result_Statement = $sqlQuery->getStatement($_GET['id']);
+    $result_Statement = $sqlQuery->getParty($_GET['id']);
     ?>
     <div class="background">
         <div class="container">
@@ -53,23 +53,32 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
                         <div>Stellingen wijzigen</div>
                         <?php while($row_Statement = $result_Statement->fetch()):?>
                         <div class="row">
-                            <div class="col border_right">Onderwerp</div>
+                            <div class="col border_right">Partijnaam</div>
                             <div class="col">
-                                <input type="text" name="subject" value="<?=$row_Statement['subject']?>">
+                                <input type="text" name="subject" value="<?=$row_Statement['name']?>">
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col border_right">Stelling</div>
+                            <div class="col border_right">Opgericht</div>
                             <div class="col">
-                                    <input type="text" name="statement" value="<?=$row_Statement['statement']?>">
+                                    <input type="text" name="statement" value="<?=$row_Statement['established']?>">
                             </div>
                         </div>
-                        <?php endwhile;?>
                         <div class="row">
-                            <div class="col border_right">Partijmening</div>
-                            <div class="col"> <a href="editPartyOpinion?id=<?=$_GET['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a></div>
+                            <div class="col border_right">Partijleider</div>
+                            <div class="col">
+                                <input type="text" name="statement" value="<?=$row_Statement['party_leader']?>">
+                            </div>
                         </div>
+                            <div class="row">
+                                <div class="col border_right">logo</div>
+                                <div class="col">
+                                    <input type="text" name="statement" value="<?=$row_Statement['img']?>">
+                                    <input type="file" name="logoParty">
+                                </div>
+                            </div>
+                        <?php endwhile;?>
                        <!-- <div class="row">
                             <div class="col-md-6 border_right">Logo</div>
                             <div class="col-md-6">
