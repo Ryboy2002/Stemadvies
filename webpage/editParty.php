@@ -4,6 +4,59 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 $statement_ID = $_GET['id'];
 if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
 $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statement_ID);
+
+
+
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    echo  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+// Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+
+// Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+// Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+// Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif") {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+
+// Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
 }
 
 
@@ -48,7 +101,7 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
     <div class="background">
         <div class="container">
             <div class="row">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="mx-2 crudEdit" align="center">
                         <div>Stellingen wijzigen</div>
                         <?php while($row_Statement = $result_Statement->fetch()):?>
@@ -74,19 +127,11 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
                             <div class="row">
                                 <div class="col border_right">logo</div>
                                 <div class="col">
-                                    <input type="text" name="statement" value="<?=$row_Statement['img']?>">
-                                    <input type="file" name="logoParty">
+                                    <input disabled type="text" name="statement" value="<?=$row_Statement['img']?>">
+                                    <input type="file" name="fileToUpload" id="fileToUpload">
                                 </div>
                             </div>
                         <?php endwhile;?>
-                       <!-- <div class="row">
-                            <div class="col-md-6 border_right">Logo</div>
-                            <div class="col-md-6">
-                                <input type='file'/>
-                                <span id='val'></span>
-                                <span id='button'>Upload</span>
-                            </div>
-                        </div>-->
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
                         <input type="hidden" name="EditStatement" value="EditStatement">
 

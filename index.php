@@ -52,7 +52,7 @@ case 'register':
 require __DIR__ . '/webpage/register.php';
 break;
 case 'test':
-require __DIR__ . '/webpage/create_profile.php';
+require __DIR__ . '/webpage/test.php';
 break;
 default:
 require __DIR__ . '/webpage/404.php';

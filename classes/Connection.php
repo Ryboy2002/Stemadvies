@@ -4,7 +4,7 @@
 
 class Connection {
     private $servername = "localhost";
-    private $database = "stemadviezen";
+    private $database = "stemadvies";
     private $username = "root";
     private $password = "";
     private $conn;
