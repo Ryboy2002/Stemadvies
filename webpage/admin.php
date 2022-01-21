@@ -66,7 +66,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 <div class="row" id="row_party_add">
                     <div class="col col_ID_Statements border_top"></div>
                     <div class="col col_Statements border_top"></div>
-                    <div class="col border_top button_add"><img class="imgAdd" src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></div>
+                    <div class="col border_top button_add"><a href="createParty" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                     <div class="col col_ID_Statements border_top"><?php echo $row['id'];?></div>
                     <div class="col col_Statements border_top"><?php echo $row['subject'];?></div>
                     <div class="col border_top">
-                        <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a>
+                        <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a><button onclick="deleteRowStatement(<?=$row['id']?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button>
                     </div>
                 </div>
 
@@ -119,6 +119,26 @@ $resultStatements = $sqlQuery->getAllStatements();
             },
         };
         fetch('/requests/deleteParty.php', opts).then(response => response.json())
+            .then(data =>{
+                    console.log(data)
+                }
+
+            );
+        document.location.reload();
+    }
+
+    function deleteRowStatement(id){
+        data = {
+            "postID": id,
+        }
+        var opts = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json'
+            },
+        };
+        fetch('/requests/deleteStatement.php', opts).then(response => response.json())
             .then(data =>{
                     console.log(data)
                 }
