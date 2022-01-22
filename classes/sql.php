@@ -47,6 +47,12 @@ class Sql {
         return $stmt;
     }
 
+    public function getParty($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM `party` WHERE `id` = ?;");
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
     public function numParty() {
         $stmt = $this->conn->prepare("SELECT * FROM `party`;");
         $stmt->execute();
@@ -65,15 +71,34 @@ class Sql {
         return $stmt;
     }
 
+    public function editParty($name, $established, $party_leader, $img, $id) {
+        $stmt = $this->conn->prepare("UPDATE `party` SET `name` = ?, established = ?, party_leader = ?, img = ? WHERE id = ?;");
+        $stmt->execute([$name, $established, $party_leader, $img, $id]);
+        return $stmt;
+    }
 
-    public function editPartyOpinion($opinion, $reason, $partyid, $statementid) {
-        $stmt = $this->conn->prepare("UPDATE `reason` SET `opinion`= ? , reason = ?  WHERE partyid = ? AND statementid = ?;");
-        $stmt->execute([$opinion,$reason,$partyid,$statementid]);
+    public function editWithoutImageParty($name, $established, $party_leader, $id) {
+        $stmt = $this->conn->prepare("UPDATE `party` SET `name` = ?, established = ?, party_leader = ? WHERE id = ?;");
+        $stmt->execute([$name, $established, $party_leader, $id]);
+        return $stmt;
+    }
+
+
+    public function editPartyOpinion($opinion, $reason, $img, $partyid, $statementid) {
+        $stmt = $this->conn->prepare("UPDATE `reason` SET `opinion`= ? , reason = ?, img = ?  WHERE partyid = ? AND statementid = ?;");
+        $stmt->execute([$opinion,$reason,$img,$partyid,$statementid]);
         return $stmt;
     }
 
     public function deletePartyRow($id){
         $stmt = $this->conn->prepare("DELETE FROM party WHERE id = ?;");
+        $stmt->execute([$id]);
+        return $stmt;
+
+    }
+
+    public function deleteStatementRow($id){
+        $stmt = $this->conn->prepare("DELETE FROM statement WHERE id = ?;");
         $stmt->execute([$id]);
         return $stmt;
 

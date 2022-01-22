@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "stemadviezen");
+$conn = mysqli_connect("localhost", "root", "", "stemadvies");
 $response = array();
 if($conn) {
     $sql = "SELECT * FROM statement";

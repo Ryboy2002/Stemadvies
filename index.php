@@ -36,11 +36,14 @@ break;
 case 'editStatements':
 require __DIR__ . '/webpage/editStatements.php';
 break;
-case 'editPartyOpinion';
+case 'editPartyOpinion':
 require __DIR__ . '/webpage/editPartyOpinion.php';
 break;
-case 'editParty';
+case 'editParty':
 require __DIR__ . '/webpage/editParty.php';
+break;
+case 'createParty':
+require __DIR__ . '/webpage/createParty.php';
 break;
 case 'login':
 require __DIR__ . '/webpage/login.php';
@@ -52,7 +55,7 @@ case 'register':
 require __DIR__ . '/webpage/register.php';
 break;
 case 'test':
-require __DIR__ . '/webpage/create_profile.php';
+require __DIR__ . '/webpage/test.php';
 break;
 default:
 require __DIR__ . '/webpage/404.php';

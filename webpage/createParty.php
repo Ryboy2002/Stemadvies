@@ -1,7 +1,6 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
-$statement_ID = $_GET['id'];
 if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
 
     $target_dir = __DIR__."/uploads/";
@@ -66,7 +65,7 @@ if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement'
     <!doctype html>
     <html lang="en">
     <head>
-        <?=dd_head("editParty", $style)?>
+        <?=dd_head("createParty", $style)?>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -97,43 +96,38 @@ if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement'
             <button class="loguit">Uitloggen</button></div>
         </div>
     </header>
-    <?php
-    $result_Statement = $sqlQuery->getParty($_GET['id']);
-    ?>
     <div class="background">
         <div class="container">
             <div class="row">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="mx-2 crudEdit" align="center">
                         <div>Stellingen wijzigen</div>
-                        <?php while($row_Statement = $result_Statement->fetch()):?>
                         <div class="row">
                             <div class="col border_right">Partijnaam</div>
                             <div class="col">
-                                <input type="text" name="partyname" value="<?=$row_Statement['name']?>">
+                                <input type="text" name="partyname">
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="col border_right">Opgericht</div>
                             <div class="col">
-                                    <input type="text" name="established" value="<?=$row_Statement['established']?>">
+                                    <input type="text" name="established">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col border_right">Partijleider</div>
                             <div class="col">
-                                <input type="text" name="partyleader" value="<?=$row_Statement['party_leader']?>">
+                                <input type="text" name="partyleader">
                             </div>
                         </div>
                             <div class="row">
                                 <div class="col border_right">Logo</div>
                                 <div class="col">
-                                    <input disabled type="text" name="logo" value="<?=$row_Statement['img']?>">
+                                    <input disabled type="text" name="logo">
                                     <input type="file" name="fileToUpload" id="fileToUpload">
                                 </div>
                             </div>
-                        <?php endwhile;?>
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
                         <input type="hidden" name="EditStatement" value="EditStatement">
 
