@@ -27,7 +27,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
 <header>
 <div class="container">
-    <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
+    <div><p style="float: left;"><button onclick="location.href='admin'"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></button></p>
         <p class="title_Stemadvies">StemAdvies</p>
     </div>
     <button class="loguit">Uitloggen</button></div>
@@ -66,7 +66,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 <div class="row" id="row_party_add">
                     <div class="col col_ID_Statements border_top"></div>
                     <div class="col col_Statements border_top"></div>
-                    <div class="col border_top button_add"><a href="createParty" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
+                    <div class="col border_top button_add"><a href="webpage/create_party.php" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
                 </div>
             </div>
 

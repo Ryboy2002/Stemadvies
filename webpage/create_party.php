@@ -212,16 +212,8 @@
 <body>
 <?php require_once '../classes/queryAdd.php';addQuery();?>
 <?php
-$mysqli = new mysqli('localhost', 'root', '', 'stemadvies') or die(mysqli_error($mysqli));
+$mysqli = new mysqli('localhost', 'root', '', 'stemadviezen') or die(mysqli_error($mysqli));
 $result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
-
-print_r($result->fetch_assoc());
-print_r($result->fetch_assoc());
-print_r($result->fetch_assoc());
-print_r($result->fetch_assoc());
-
-
-
 ?>
 
 <div id="container">
@@ -277,3 +269,4 @@ print_r($result->fetch_assoc());
 </html>
 <?php
 
+   
