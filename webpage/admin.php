@@ -3,7 +3,71 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 if(!isset($_SESSION["id"])){
     echo "<script>location.href='login'</script>";
 }
-//session_start();
+
+if (isset($_POST['CreateStatement']) && $_POST['CreateStatement'] == 'CreateStatement') {
+    $result = $sqlQuery->createStatement($_POST['subject'],$_POST['statement']);
+}
+
+if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
+
+    $target_dir = __DIR__."/uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // echo  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+// Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if ($check !== false) {
+            /* echo "File is an image - " . $check["mime"] . ".";*/
+            $uploadOk = 1;
+        } else {
+            /* echo "File is not an image.";*/
+            $uploadOk = 0;
+        }
+    }
+
+// Check if file already exists
+    if (file_exists($target_file)) {
+        /*  echo "Sorry, file already exists.";*/
+        $uploadOk = 0;
+    }
+
+// Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        /* echo "Sorry, your file is too large.";*/
+        $uploadOk = 0;
+    }
+
+// Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif") {
+        /*  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";*/
+        $uploadOk = 0;
+    }
+
+// Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        /*echo "Sorry, your file was not uploaded.";*/
+// if everything is ok, try to uploads file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            /* echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";*/
+        } else {
+            /* echo "Sorry, there was an error uploading your file.";*/
+        }
+    }
+
+    if ($uploadOk == 1 & isset($_FILES)) {
+        $result = $sqlQuery->createParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]));
+
+    } else {
+        $result = $sqlQuery->createWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader']);
+    }
+
+}
 
 
 ?>
@@ -92,6 +156,11 @@ $resultStatements = $sqlQuery->getAllStatements();
                 </div>
 
         <?php endwhile;?>
+                <div class="row" id="row_party_add">
+                    <div class="col col_ID_Statements border_top"></div>
+                    <div class="col col_Statements border_top"></div>
+                    <div class="col border_top button_add"><a href="createStatements" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
+                </div>
             </div>
         </div>
     </div>
