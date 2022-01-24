@@ -10,6 +10,7 @@ function addQuery()
         $date_created = date("Y-m-d H:i:s");
 
         $mysqli->query("INSERT INTO party (name, established, party_leader, img, date_created) VALUES ('$partyName', '$partyEstablished', '$partyLeader', '$imgLogo', '$date_created')") or die($mysqli->error);
+/*        echo "<script>location.href='admin'</script>";*/
     }
     if(isset($_POST['opslaan'])){
       $subject = $_POST['subject'];
@@ -17,8 +18,9 @@ function addQuery()
       $date_created = date("Y-m-d H:i:s");
 
       $mysqli->query("INSERT INTO statement (subject, statement, date_created) VALUES ('$subject', '$statement', '$date_created')") or die($mysqli->error);
-
+     //   echo "<script>location.href='admin'</script>";
     }
+
 }
 
 

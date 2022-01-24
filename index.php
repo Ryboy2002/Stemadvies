@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION["id"] = 3;
 
 
 require (__DIR__ ."/includes/classloader.php");

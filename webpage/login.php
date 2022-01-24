@@ -1,4 +1,6 @@
 <?php
+
+unset($_SESSION["id"]);
 $style = '<link rel="stylesheet" href="/assets/styles.css">';
 /*if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     header("Location: /home");

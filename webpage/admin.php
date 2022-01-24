@@ -1,5 +1,11 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
+if(!isset($_SESSION["id"])){
+    echo "<script>location.href='login'</script>";
+}
+//session_start();
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,11 +33,10 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
 <header>
 <div class="container">
-    <div><p style="float: left;"><button onclick="location.href='admin'"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></button></p>
+    <div><p style="float: left;"><a href="admin.php"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></a></p>
         <p class="title_Stemadvies">StemAdvies</p>
     </div>
-    <button class="loguit">Uitloggen</button></div>
-</div>
+    <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
 </header>
 <?php
 $result = $sqlQuery->getAllParty();
@@ -66,11 +71,11 @@ $resultStatements = $sqlQuery->getAllStatements();
                 <div class="row" id="row_party_add">
                     <div class="col col_ID_Statements border_top"></div>
                     <div class="col col_Statements border_top"></div>
-                    <div class="col border_top button_add"><a href="webpage/create_party.php" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
+                    <div class="col border_top button_add"><a href="createParty" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
                 </div>
             </div>
 
-            <div class="col mx-2 crud" style="overflow-y: scroll; overflow-x: auto">
+            <div class="col mx-2 crud no-scrollbar" style="overflow-y: scroll; overflow-x: auto">
                 <div class="row">
                     <div class="col col_ID_Statements">ID</div>
                     <div class="col col_Statements"></div>

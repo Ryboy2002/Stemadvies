@@ -1,7 +1,13 @@
 <?php //include ("../classes/party.php")?>
+<?php $style = '<link rel="stylesheet" href="../assets/styles.css">';
+    if(!isset($_SESSION["id"])){
+    echo "<script>location.href='login'</script>";
+    }?>
+
 <!doctype html>
 <html lang="en">
 <head>
+    <?=dd_head("createParty", $style)?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -210,7 +216,7 @@
 
 </head>
 <body>
-<?php require_once '../classes/queryAdd.php';addQuery();?>
+<?php /*require_once '../classes/queryAdd.php';addQuery();*/?>
 <?php
 $mysqli = new mysqli('localhost', 'root', '', 'stemadviezen') or die(mysqli_error($mysqli));
 $result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
@@ -219,9 +225,9 @@ $result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
 <div id="container">
      <img class="imgBackground" src="../assets/images/tweede-kamer.png">
     <div class="titlebar">
-     <img class="imgLogoSA" src="../assets/images/StemAdvies.png" onclick="location.href='admin.php';">
+     <img class="imgLogoSA" src="../assets/images/StemAdvies.png" onclick="location.href='admin';">
      <label class="lblTitle">StemAdvies</label>
-        <label class="lblUitloggen" onclick="location.href='login.php'">Uitloggen</label>
+        <label class="lblUitloggen" onclick="location.href='login'">Uitloggen</label>
     </div>
 
 
@@ -256,7 +262,7 @@ $result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
         </div>
 
         <div class="form-group">
-        <button type="submit" style="opacity: 1; margin-bottom: 2%; margin-top: -0.5%;" class="form-control" name="create">Opslaan</button>
+        <button type="submit" style="opacity: 1; margin-bottom: 2%; margin-top: -0.5%;" class="form-control" name="create" onclick="">Opslaan</button>
         </div>
     </form>
     <div class="footerbar">
@@ -269,4 +275,3 @@ $result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
 </html>
 <?php
 
-   
