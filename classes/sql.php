@@ -77,6 +77,24 @@ class Sql {
         return $stmt;
     }
 
+    public function createStatement($subject, $statement) {
+        $stmt = $this->conn->prepare("INSERT INTO `statement` (`subject`, `statement`, `date_created`) VALUES (?,?,NOW());");
+        $stmt->execute([$subject,$statement]);
+        return $stmt;
+    }
+
+    public function createParty($name, $established, $party_leader, $img) {
+        $stmt = $this->conn->prepare("INSERT INTO `party` (`name`, `established`, `party_leader`, `img`, `date_created`) VALUES (?,?,?,?,NOW());");
+        $stmt->execute([$name, $established, $party_leader, $img]);
+        return $stmt;
+    }
+
+    public function createWithoutImageParty($name, $established, $party_leader) {
+        $stmt = $this->conn->prepare("INSERT INTO `party` (`name`, `established`, `party_leader`,`date_created`) VALUES (?,?,?,NOW());");
+        $stmt->execute([$name, $established, $party_leader]);
+        return $stmt;
+    }
+
     public function editWithoutImageParty($name, $established, $party_leader, $id) {
         $stmt = $this->conn->prepare("UPDATE `party` SET `name` = ?, established = ?, party_leader = ? WHERE id = ?;");
         $stmt->execute([$name, $established, $party_leader, $id]);

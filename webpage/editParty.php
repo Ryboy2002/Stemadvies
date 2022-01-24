@@ -2,7 +2,7 @@
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
 $statement_ID = $_GET['id'];
-if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
+if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     $target_dir = __DIR__."/uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -57,8 +57,9 @@ if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement'
     if ($uploadOk == 1 & isset($_FILES)) {
         $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]), $statement_ID);
 
+    } else {
+        $result = $sqlQuery->editWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], $statement_ID);
     }
-    $result = $sqlQuery->editWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], $statement_ID);
 }
 
 
@@ -135,7 +136,7 @@ if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement'
                             </div>
                         <?php endwhile;?>
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
-                        <input type="hidden" name="EditStatement" value="EditStatement">
+                        <input type="hidden" name="EditParty" value="EditParty">
 
                     </div>
                 </form>

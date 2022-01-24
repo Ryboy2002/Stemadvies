@@ -42,7 +42,10 @@ case 'editParty':
 require __DIR__ . '/webpage/editParty.php';
 break;
 case 'createParty':
-require __DIR__ . '/webpage/create_party.php';
+require __DIR__ . '/webpage/createParty.php';
+break;
+case 'createStatements':
+require __DIR__ . '/webpage/createStatements.php';
 break;
 case 'login':
 require __DIR__ . '/webpage/login.php';

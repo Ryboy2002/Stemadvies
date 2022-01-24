@@ -70,14 +70,6 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
                             <div class="col border_right">Partijmening</div>
                             <div class="col"> <a href="editPartyOpinion?id=<?=$_GET['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a></div>
                         </div>
-                       <!-- <div class="row">
-                            <div class="col-md-6 border_right">Logo</div>
-                            <div class="col-md-6">
-                                <input type='file'/>
-                                <span id='val'></span>
-                                <span id='button'>Upload</span>
-                            </div>
-                        </div>-->
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
                         <input type="hidden" name="EditStatement" value="EditStatement">
 
