@@ -5,7 +5,7 @@ $statement_ID = $_GET['id'];
 if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     $target_dir = __DIR__."/uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["img"]);
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -55,7 +55,7 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
     }
 
     if ($uploadOk == 1 & isset($_FILES)) {
-        $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["img"]), $statement_ID);
+        $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]), $statement_ID);
 
     } else {
         $result = $sqlQuery->editWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], $statement_ID);
@@ -93,11 +93,9 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     <header>
         <div class="container">
-            <a href="admin" style="float: left; z-index: 3;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></a>
-                <p class="title_Stemadvies">StemAdvies</p>
-
+            <div><a href="admin" style="float: left;"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"><p class="title_Stemadvies">StemAdvies</p></a>
+            </div>
             <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
-
     </header>
     <?php
     $result_Statement = $sqlQuery->getParty($_GET['id']);

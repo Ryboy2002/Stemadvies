@@ -41,6 +41,12 @@ class Sql {
         return $stmt;
     }
 
+    public function numStatements($statementid) {
+        $stmt = $this->conn->prepare("SELECT partyid,opinion,reason, party.name FROM reason INNER JOIN party ON party.id = reason.partyid WHERE statementid = ?");
+        $stmt->execute([$statementid]);
+        return $stmt->rowCount();
+    }
+
     public function getStatement($id) {
         $stmt = $this->conn->prepare("SELECT * FROM `statement` WHERE `id` = ?;");
         $stmt->execute([$id]);
@@ -104,6 +110,12 @@ class Sql {
 
     public function editPartyOpinion($opinion, $reason, $partyid, $statementid) {
         $stmt = $this->conn->prepare("UPDATE `reason` SET `opinion`= ? , reason = ? WHERE partyid = ? AND statementid = ?;");
+        $stmt->execute([$opinion,$reason,$partyid,$statementid]);
+        return $stmt;
+    }
+
+    public function createPartyOpinion($opinion, $reason, $partyid, $statementid) {
+        $stmt = $this->conn->prepare("INSERT INTO `reason` (`opinion`,`reason`,`partyid`,`statementid`) VALUES (?,?,?,?);");
         $stmt->execute([$opinion,$reason,$partyid,$statementid]);
         return $stmt;
     }

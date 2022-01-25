@@ -2,20 +2,55 @@
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
 $statement_ID = $_GET['id'];
-if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPartyOpinion') {
-    $result = $sqlQuery->editPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
-    echo "<script>location.href='admin';</script>";
-}
 
-$result_reason = $sqlQuery->getAllReasons($_GET['id']);
 
-$reasonArray = Array();
-while($row_statement = $result_reason->fetch()):
+
+
+    $result_reason = $sqlQuery->getAllReasons($_GET['id']);
+    $reasonArray = Array();
+    while($row_statement = $result_reason->fetch()):
         $reasonRow = Array();
         array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason'], $row_statement['partyid']);
         array_push($reasonArray,$reasonRow);
         unset($reasonRow);
-endwhile;
+    endwhile;
+
+
+if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPartyOpinion') {
+    $result_num_party = $sqlQuery->numParty();
+    $result_num_statements = $sqlQuery->numStatements($statement_ID);
+    $difference = $result_num_party - $result_num_statements;
+    if ($difference != 0) {
+        $check = 0;
+        foreach($reasonArray as $row){
+            if ($_POST['party'] != $row[0]) {
+                $check++;
+            }
+            if ($check == $difference) {
+                $reasonRow = Array();
+                array_push($reasonRow,$row[$check], $_POST['opinion'], $_POST['reason'], $_POST['party']);
+                array_push($reasonArray,$reasonRow);
+                unset($reasonRow);
+                $result = $sqlQuery->createPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
+            }
+        }
+    } else {
+        $i = -1;
+        foreach($reasonArray as $row){
+            $i++;
+            if ($_POST['party'] == $row[3]) {
+                echo "<h1>".$_POST['opinion'].$_POST['reason'].$_POST['party']."|".$row[3]."</h1>";
+                $reasonArray[$i][1] = $_POST['opinion'];
+                $reasonArray[$i][2] = $_POST['reason'];
+                $reasonArray[$i][3] = $_POST['party'];
+            }
+        }
+        $result = $sqlQuery->editPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
+        echo "<h1>Gefaald</h1>";
+    }
+    /*echo "<script>location.href='admin';</script>";*/
+}
+
 ?>
     <!doctype html>
     <html lang="en">
@@ -45,8 +80,7 @@ endwhile;
 
     <header>
         <div class="container">
-            <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
-                <p class="title_Stemadvies">StemAdvies</p>
+            <div><a href="admin" style="float: left;"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"><p class="title_Stemadvies">StemAdvies</p></a>
             </div>
             <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
     </header>
@@ -116,12 +150,22 @@ endwhile;
             <?php echo json_encode($reasonArray); ?>;
         function ChangeValue() {
             var e = document.getElementById("party");
+
             var strUser = e.value;
+
+            var x = 0;
 
             for(var i = 0; i < passedArray.length; i++) {
                 if (strUser == passedArray[i][3]) {
-                      document.getElementById("opinion").value = passedArray[i][1];
+                    x = i;
+                    document.getElementById("opinion").value = passedArray[i][1];
                     document.getElementById("reason").value = passedArray[i][2];
+
+                }
+
+                if (passedArray[x].includes(strUser) === false) {
+                    document.getElementById("opinion").value = 0;
+                    document.getElementById("reason").value = "";
                 }
             }
         }

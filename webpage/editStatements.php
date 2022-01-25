@@ -38,8 +38,7 @@ echo "<script>location.href = 'admin';</script>";
 
     <header>
         <div class="container">
-            <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
-                <p class="title_Stemadvies">StemAdvies</p>
+            <div><a href="admin" style="float: left;"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"><p class="title_Stemadvies">StemAdvies</p></a>
             </div>
             <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
     </header>

@@ -11,7 +11,7 @@ if (isset($_POST['CreateStatement']) && $_POST['CreateStatement'] == 'CreateStat
 if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
 
     $target_dir = __DIR__."/uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["img"]);
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -61,7 +61,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
     }
 
     if ($uploadOk == 1 & isset($_FILES)) {
-        $result = $sqlQuery->createParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["img"]));
+        $result = $sqlQuery->createParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]));
 
     } else {
         $result = $sqlQuery->createWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader']);
@@ -96,11 +96,10 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
 <body>
 
 <header>
-<div class="container">
-    <div><a href="admin" style="float: left;"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></a>
-        <p class="title_Stemadvies">StemAdvies</p>
-    </div>
-    <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
+    <div class="container">
+        <div><a href="admin" style="float: left;"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"><p class="title_Stemadvies">StemAdvies</p></a>
+        </div>
+        <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
 </header>
 <?php
 $result = $sqlQuery->getAllParty();
