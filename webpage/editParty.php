@@ -92,11 +92,11 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     <header>
         <div class="container">
-            <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
+            <a href="admin" style="float: left; z-index: 3;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></a>
                 <p class="title_Stemadvies">StemAdvies</p>
-            </div>
-            <button class="loguit">Uitloggen</button></div>
-        </div>
+
+            <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
+
     </header>
     <?php
     $result_Statement = $sqlQuery->getParty($_GET['id']);

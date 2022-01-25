@@ -36,14 +36,14 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
                 <p class="title_Stemadvies">StemAdvies</p>
             </div>
             <button class="loguit">Uitloggen</button></div>
-        </div>
+
     </header>
     <div class="background">
         <div class="container">
             <div class="row">
                 <form action="admin" method="post">
                     <div class="mx-2 crudEdit" align="center">
-                        <div>Stellingen wijzigen</div>
+                        <div>Stellingen toevoegen</div>
                         <div class="row">
                             <div class="col border_right">Onderwerp</div>
                             <div class="col">

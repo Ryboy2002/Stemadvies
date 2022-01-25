@@ -114,7 +114,7 @@ $resultStatements = $sqlQuery->getAllStatements();
     <div class="container">
       <div class="row">
 
-            <div class="col mx-2 crud">
+            <div class="col mx-2 crud no-scrollbar" style="overflow-y: scroll; overflow-x: auto">
                 <div class="row">
                     <div class="col col_ID_Party">ID</div>
                     <div class="col col_Party">Partij</div>
@@ -218,7 +218,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 }
 
             );
-        document.location.reload();
+      //  document.location.reload();
     }
 </script>
 </body>
