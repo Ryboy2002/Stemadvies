@@ -1,6 +1,10 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
+if(!isset($_SESSION["id"])){
+    echo "<script>location.href='login'</script>";
+}
+
 $statement_ID = $_GET['id'];
 if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
 $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statement_ID);

@@ -1,6 +1,10 @@
 <?php
 $style = '<link rel="stylesheet" href="../assets/styles.css">';
 
+if(!isset($_SESSION["id"])){
+    echo "<script>location.href='login'</script>";
+}
+
 $statement_ID = $_GET['id'];
 
 
