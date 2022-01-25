@@ -35,15 +35,14 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
             <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
                 <p class="title_Stemadvies">StemAdvies</p>
             </div>
-            <button class="loguit">Uitloggen</button></div>
-        </div>
+            <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
     </header>
     <div class="background">
         <div class="container">
             <div class="row">
                 <form action="admin" method="post" enctype="multipart/form-data">
                     <div class="mx-2 crudEdit" align="center">
-                        <div>Stellingen wijzigen</div>
+                        <div>Stellingen toevoegen</div>
                         <div class="row">
                             <div class="col border_right">Partijnaam</div>
                             <div class="col">

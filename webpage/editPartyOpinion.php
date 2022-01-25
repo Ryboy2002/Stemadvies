@@ -4,6 +4,7 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 $statement_ID = $_GET['id'];
 if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPartyOpinion') {
     $result = $sqlQuery->editPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
+    echo "<script>location.href='admin';</script>";
 }
 
 $result_reason = $sqlQuery->getAllReasons($_GET['id']);
@@ -47,8 +48,7 @@ endwhile;
             <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
                 <p class="title_Stemadvies">StemAdvies</p>
             </div>
-            <button class="loguit">Uitloggen</button></div>
-        </div>
+            <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
     </header>
     <?php
     $result_Statement = $sqlQuery->getStatement($_GET['id']);

@@ -225,7 +225,7 @@ $result =  $mysqli->query("SELECT * FROM party") or die($mysqli->error);
 <div id="container">
      <img class="imgBackground" src="../assets/images/tweede-kamer.png">
     <div class="titlebar">
-     <img class="imgLogoSA" src="../assets/images/StemAdvies.png" onclick="location.href='admin';">
+        <a href="admin.php"><img class="imgLogoSA" src="../assets/images/StemAdvies.png"></a>
      <label class="lblTitle">StemAdvies</label>
         <label class="lblUitloggen" onclick="location.href='login'">Uitloggen</label>
     </div>

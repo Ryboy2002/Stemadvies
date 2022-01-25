@@ -102,9 +102,9 @@ class Sql {
     }
 
 
-    public function editPartyOpinion($opinion, $reason, $img, $partyid, $statementid) {
-        $stmt = $this->conn->prepare("UPDATE `reason` SET `opinion`= ? , reason = ?, img = ?  WHERE partyid = ? AND statementid = ?;");
-        $stmt->execute([$opinion,$reason,$img,$partyid,$statementid]);
+    public function editPartyOpinion($opinion, $reason, $partyid, $statementid) {
+        $stmt = $this->conn->prepare("UPDATE `reason` SET `opinion`= ? , reason = ? WHERE partyid = ? AND statementid = ?;");
+        $stmt->execute([$opinion,$reason,$partyid,$statementid]);
         return $stmt;
     }
 

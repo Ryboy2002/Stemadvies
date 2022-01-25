@@ -4,6 +4,8 @@ $style = '<link rel="stylesheet" href="../assets/styles.css">';
 $statement_ID = $_GET['id'];
 if (isset($_POST['EditStatement']) && $_POST['EditStatement'] == 'EditStatement') {
 $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statement_ID);
+
+echo "<script>location.href = 'admin';</script>";
 }
 
 
@@ -39,8 +41,7 @@ $result = $sqlQuery->editStatement($_POST['subject'],$_POST['statement'],$statem
             <div><p style="float: left;"><img class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></p>
                 <p class="title_Stemadvies">StemAdvies</p>
             </div>
-            <button class="loguit">Uitloggen</button></div>
-        </div>
+            <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
     </header>
     <?php
     $result_Statement = $sqlQuery->getStatement($_GET['id']);

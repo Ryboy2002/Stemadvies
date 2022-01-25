@@ -4,7 +4,7 @@ if (isset($_POST['test']) && $_POST['test'] == 'test'){
 
 
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["img"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -47,7 +47,7 @@ if (isset($_POST['test']) && $_POST['test'] == 'test'){
 // if everything is ok, try to uploads file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["img"])) . " has been uploaded.";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }

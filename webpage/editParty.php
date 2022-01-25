@@ -5,7 +5,7 @@ $statement_ID = $_GET['id'];
 if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     $target_dir = __DIR__."/uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["img"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -55,11 +55,12 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
     }
 
     if ($uploadOk == 1 & isset($_FILES)) {
-        $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]), $statement_ID);
+        $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["img"]), $statement_ID);
 
     } else {
         $result = $sqlQuery->editWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], $statement_ID);
     }
+  echo "<script>location.href='admin';</script>";
 }
 
 

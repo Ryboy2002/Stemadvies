@@ -11,7 +11,7 @@ if (isset($_POST['CreateStatement']) && $_POST['CreateStatement'] == 'CreateStat
 if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
 
     $target_dir = __DIR__."/uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["img"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -61,7 +61,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
     }
 
     if ($uploadOk == 1 & isset($_FILES)) {
-        $result = $sqlQuery->createParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]));
+        $result = $sqlQuery->createParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["img"]));
 
     } else {
         $result = $sqlQuery->createWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader']);
@@ -97,7 +97,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
 
 <header>
 <div class="container">
-    <div><p style="float: left;"><a href="admin.php"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></a></p>
+    <div><a href="admin" style="float: left;"><img alt="logo" class="logo_Stemadvies" src="../assets/images/StemAdvies.png"></a>
         <p class="title_Stemadvies">StemAdvies</p>
     </div>
     <a href="login" class="loguit" style="text-decoration: unset">Uitloggen</a></div>
@@ -149,7 +149,7 @@ $resultStatements = $sqlQuery->getAllStatements();
 
             <div class="row">
                     <div class="col col_ID_Statements border_top"><?php echo $row['id'];?></div>
-                    <div class="col col_Statements border_top"><?php echo $row['subject'];?></div>
+                    <div class="col w-70 col_Statements border_top"><?php echo $row['subject'];?></div>
                     <div class="col border_top">
                         <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a><button onclick="deleteRowStatement(<?=$row['id']?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button>
                     </div>
@@ -218,7 +218,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 }
 
             );
-      //  document.location.reload();
+        document.location.reload();
     }
 </script>
 </body>
