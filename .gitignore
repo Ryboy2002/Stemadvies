@@ -5,3 +5,5 @@ webpage/create_party1.php
 index.php
 classes/party.php
 classes/account.php
+*.png
+*.jpg
