@@ -15,6 +15,8 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     // echo  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
+
+
 // Check if image file is a actual image or fake image
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -26,6 +28,7 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
             $uploadOk = 0;
         }
     }
+
 
 // Check if file already exists
     if (file_exists($target_file)) {
@@ -58,13 +61,18 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
         }
     }
 
+
+
+
+
     if ($uploadOk == 1 & isset($_FILES)) {
         $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]), $statement_ID);
 
     } else {
         $result = $sqlQuery->editWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], $statement_ID);
     }
-  echo "<script>location.href='admin';</script>";
+   //header('Location: /admin');
+    //exit;
 }
 
 
@@ -135,10 +143,11 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
                                 <div class="col-6">
 
-                                    <input disabled type="text" name="logo" value="<?=$row_Statement['img']?>">
+                                    <input id="inputPartyLogo" disabled type="text" name="logo" value="<?=$row_Statement['img']?>">
                                 </div>
                                 <div class="col-6">
-                                <input class="" type="button" name="btnDelete" value="Delete">
+                                    <button type="button" onclick="deletePartyImg(<?=$row_Statement['id']?>)" id="btnDeleteImg">Delete</button>
+                               <!--     <input type="hidden" name="btnDelete" value="btnDelete">-->
                                 </div>
 
                                 <div class="col-6">
@@ -167,6 +176,31 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
         $("input[type='file']").change(function(){
             $('#val').text(this.value.replace(/C:\\fakepath\\/i, ''))
         })
+
+        function deletePartyImg(id) {
+            // document.getElementById("inputPartyLogo").innerHTML = "";
+            location.reload();
+            data = {
+                "postID": id,
+            }
+            var opts = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json'
+                },
+            };
+            fetch('/requests/deleteImg.php', opts).then(response => response.json())
+                .then(data =>{
+                        console.log(data)
+
+
+                    }
+
+                );
+
+        }
+
     </script>
     </body>
     </html>

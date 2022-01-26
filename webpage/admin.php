@@ -197,7 +197,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 }
 
             );
-        document.location.reload();
+        //document.location.reload();
     }
 
     function deleteRowStatement(id){
@@ -217,7 +217,7 @@ $resultStatements = $sqlQuery->getAllStatements();
                 }
 
             );
-        document.location.reload();
+       // document.location.reload();
     }
 </script>
 </body>
