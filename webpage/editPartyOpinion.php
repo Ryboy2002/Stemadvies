@@ -7,51 +7,64 @@ if(!isset($_SESSION["id"])){
 
 $statement_ID = $_GET['id'];
 
-
-
-
-    $result_reason = $sqlQuery->getAllReasons($_GET['id']);
-    $reasonArray = Array();
-    while($row_statement = $result_reason->fetch()):
-        $reasonRow = Array();
-        array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason'], $row_statement['partyid']);
-        array_push($reasonArray,$reasonRow);
-        unset($reasonRow);
-    endwhile;
-
+$result_reason = $sqlQuery->getAllReasons($_GET['id']);
+$reasonArray = Array();
+while($row_statement = $result_reason->fetch()):
+    $reasonRow = Array();
+    array_push($reasonRow,$row_statement['name'], $row_statement['opinion'], $row_statement['reason'], $row_statement['partyid']);
+    array_push($reasonArray,$reasonRow);
+    unset($reasonRow);
+endwhile;
 
 if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPartyOpinion') {
     $result_num_party = $sqlQuery->numParty();
     $result_num_statements = $sqlQuery->numStatements($statement_ID);
     $difference = $result_num_party - $result_num_statements;
-    if ($difference != 0) {
+    //echo $difference;
+    if ($difference > 0) {
         $check = 0;
-        foreach($reasonArray as $row){
-            if ($_POST['party'] != $row[0]) {
-                $check++;
+
+        if (isset($reasonArray[0])) {
+            foreach($reasonArray as $row) {
+                if ($_POST['party'] != $row[0] || !isset($row[0])) {
+                    $check++;
+                }
+                if ($check == $difference) {
+                    $reasonRow = array();
+                    array_push($reasonRow, $row[$check], $_POST['opinion'], $_POST['reason'], $_POST['party']);
+                    array_push($reasonArray, $reasonRow);
+                    unset($reasonRow);
+                    $result = $sqlQuery->createPartyOpinion($_POST['opinion'], $_POST['reason'], $_POST['party'], $statement_ID);
+                } else {
+                        $reasonRow = array();
+                        array_push($reasonRow, $_POST['test_text'], $_POST['opinion'], $_POST['reason'], $_POST['party']);
+                        array_push($reasonArray, $reasonRow);
+                        unset($reasonRow);
+                        $result = $sqlQuery->createPartyOpinion($_POST['opinion'], $_POST['reason'], $_POST['party'], $statement_ID);
+                }
             }
-            if ($check == $difference) {
-                $reasonRow = Array();
-                array_push($reasonRow,$row[$check], $_POST['opinion'], $_POST['reason'], $_POST['party']);
-                array_push($reasonArray,$reasonRow);
-                unset($reasonRow);
-                $result = $sqlQuery->createPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
-            }
+
+        }else {
+            $reasonRow = Array();
+            array_push($reasonRow,$_POST['test_text'], $_POST['opinion'], $_POST['reason'], $_POST['party']);
+            array_push($reasonArray,$reasonRow);
+            unset($reasonRow);
+            $result = $sqlQuery->createPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
         }
+
     } else {
         $i = -1;
         foreach($reasonArray as $row){
             $i++;
             if ($_POST['party'] == $row[3]) {
-                echo "<h1>".$_POST['opinion'].$_POST['reason'].$_POST['party']."|".$row[3]."</h1>";
                 $reasonArray[$i][1] = $_POST['opinion'];
                 $reasonArray[$i][2] = $_POST['reason'];
                 $reasonArray[$i][3] = $_POST['party'];
             }
         }
         $result = $sqlQuery->editPartyOpinion($_POST['opinion'], $_POST['reason'],$_POST['party'], $statement_ID);
-        echo "<h1>Gefaald</h1>";
     }
+   // echo "<h1>Test</h1>";
     /*echo "<script>location.href='admin';</script>";*/
 }
 
@@ -104,7 +117,7 @@ if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPart
                         <div class="row">
                             <div class="col border_right">Partij</div>
                             <div class="col">
-                                <select id="party" name="party" onchange="ChangeValue()" form="formPartyOpinion">
+                                <select id="party" name="party" onchange="ChangeValue();document.getElementById('text_content').value=this.options[this.selectedIndex].text" form="formPartyOpinion">
                                     <option value="" selected disabled hidden>Kies partij</option>
                                     <?php while($row_statement = $result_party_names->fetch()):?>
                                     <?php echo '<option value="'.$row_statement["id"].'">'.$row_statement["name"].'</option>'; ?>
@@ -130,8 +143,8 @@ if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPart
                             <div class="col"><input id="reason" name="reason" type="text"></div>
                         </div>
                         <div class="row btn" align="center"><input type="submit" value="Opslaan"></div>
+                        <input type="hidden" name="test_text" id="text_content" value="" />
                         <input type="hidden" name="EditPartyOpinion" value="EditPartyOpinion">
-
                     </div>
                 </form>
             </div>
@@ -157,17 +170,17 @@ if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPart
 
             var strUser = e.value;
 
-            var x = 0;
+            var x = -1;
 
             for(var i = 0; i < passedArray.length; i++) {
                 if (strUser == passedArray[i][3]) {
-                    x = i;
+                    x = i + 1;
                     document.getElementById("opinion").value = passedArray[i][1];
                     document.getElementById("reason").value = passedArray[i][2];
 
                 }
 
-                if (passedArray[x].includes(strUser) === false) {
+                if (x === -1) {
                     document.getElementById("opinion").value = 0;
                     document.getElementById("reason").value = "";
                 }
