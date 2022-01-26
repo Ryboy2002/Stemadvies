@@ -60,12 +60,11 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
     if ($uploadOk == 1 & isset($_FILES)) {
         $result = $sqlQuery->editParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], basename($_FILES["fileToUpload"]["name"]), $statement_ID);
-
     } else {
         $result = $sqlQuery->editWithoutImageParty($_POST['partyname'],$_POST['established'],$_POST['partyleader'], $statement_ID);
     }
-   //header('Location: /admin');
-    //exit;
+   header('Location: /admin');
+   exit;
 }
 
 
@@ -172,8 +171,10 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
 
         function deletePartyImg(id) {
             // document.getElementById("inputPartyLogo").innerHTML = "";
-            location.reload();
-            data = {
+            //location.reload();
+
+            console.log(id);
+            var data = {
                 "postID": id,
             }
             var opts = {
@@ -183,12 +184,11 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
                     'content-type': 'application/json'
                 },
             };
-            fetch('/requests/deleteImg.php', opts).then(response => response.json())
-                .then(data =>{
-                        console.log(data);
-                    }
-
-                );
+            fetch('/requests/deleteImg.php', opts)
+                .then(data => {
+                    console.log('Success:', data);
+                    window.location.reload();
+                });
         }
 
     </script>
