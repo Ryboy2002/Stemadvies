@@ -133,5 +133,10 @@ class Sql {
         return $stmt;
 
     }
+    public function deleteImage($img, $partyid){
+        $stmt = $this->conn->prepare("UPDATE `party` SET `img` = '' WHERE `party`.`id` = ? ");
+        $stmt->execute([$img, $partyid]);
+        return $stmt;
+    }
 
 }

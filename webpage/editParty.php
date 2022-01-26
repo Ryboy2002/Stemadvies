@@ -131,10 +131,18 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
                             </div>
                         </div>
                             <div class="row">
-                                <div class="col border_right">Logo</div>
-                                <div class="col">
+                                <div class="col-6 border_right">Logo</div>
+
+                                <div class="col-6">
+
                                     <input disabled type="text" name="logo" value="<?=$row_Statement['img']?>">
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                </div>
+                                <div class="col-6">
+                                <input class="" type="button" name="btnDelete" value="Delete">
+                                </div>
+
+                                <div class="col-6">
+                                <input type="file" name="fileToUpload" id="fileToUpload">
                                 </div>
                             </div>
                         <?php endwhile;?>
