@@ -192,13 +192,10 @@ if (isset($_POST['EditParty']) && $_POST['EditParty'] == 'EditParty') {
             };
             fetch('/requests/deleteImg.php', opts).then(response => response.json())
                 .then(data =>{
-                        console.log(data)
-
-
+                        console.log(data);
                     }
 
                 );
-
         }
 
     </script>
