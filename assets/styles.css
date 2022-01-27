@@ -114,12 +114,19 @@ header, footer {
     height: 12vh;
 }
 
-footer {
+/*footer {
     position: relative;
     bottom: 0;
     left: 0;
     right: 0;
     margin-top: -1%;
+}*/
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .containerWidth {
@@ -145,10 +152,10 @@ footer {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-table {
+/*table {
     height: 505px;
     width: 100%;
-}
+}*/
 
 .crudEdit {
     background-color: rgba(255,255,255,.40);
@@ -211,4 +218,60 @@ table {
 .buttonStyleHide {
     background: none;
     border: none;
+}
+
+table {
+    height: fit-content;
+    border: 0px white solid;
+    border-radius: 20px;
+    border-collapse: separate !important;
+    padding: 0 !important;
+    border-spacing: 0;
+}
+
+tr {
+    font-size: 30px;
+    /*border: 1px solid white !important;*/
+}
+th { border: solid 2px white !important;}
+tr:first-child th:first-child { border-top-left-radius: 20px; }
+tr:first-child th:last-child { border-top-right-radius: 20px; }
+tr:last-child th:first-child { border-bottom-left-radius: 20px; }
+tr:last-child th:last-child { border-bottom-right-radius: 20px; }
+
+table { border-collapse: separate; }
+td { border: solid 2px white; }
+tr:first-child td:first-child { border-top-left-radius: 20px; }
+tr:first-child td:last-child { border-top-right-radius: 20px; }
+tr:last-child td:first-child { border-bottom-left-radius: 20px; }
+tr:last-child td:last-child { border-bottom-right-radius: 20px; }
+
+table .td_buttons {
+    text-align: right;
+}
+
+.row_table {
+    margin-top: 2rem;
+}
+
+@media (max-width: 991px) {
+    table {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    tr {
+        font-size: 25px !important;
+    }
+
+    .tableStatements{
+        margin-top: 20px !important;
+    }
+}
+
+@media (min-width: 1950px) {
+
+    .row_table {
+        margin-top: 8rem;
+    }
 }
