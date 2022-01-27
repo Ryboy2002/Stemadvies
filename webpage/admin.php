@@ -128,7 +128,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
                     <?php endwhile;?>
                 </table>
 
-                <table class="col-12 col-sm-12 col-md-6 offset-md-1 tableStatements" style="color: white;">
+                <table class="col-12 col-sm-12 col-md-6 offset-md-1 mb-5 tableStatements" style="color: white;">
                     <tr>
                         <th>ID</th>
                         <th>Stelling</th>
