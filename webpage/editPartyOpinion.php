@@ -66,6 +66,8 @@ if (isset($_POST['EditPartyOpinion']) && $_POST['EditPartyOpinion'] == 'EditPart
     }
    // echo "<h1>Test</h1>";
     /*echo "<script>location.href='admin';</script>";*/
+   /* header("admin");
+    exit;*/
 }
 
 ?>

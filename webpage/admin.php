@@ -121,11 +121,16 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
 
                             <?php $id = $row['id'] ?>
 
-                            <td class="td_buttons"><a href="editParty?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a> <button onclick="deleteRowParty(<?/*=$row['id']*/?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></td>
+                            <td class="td_buttons"><a href="editParty?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a> <button onclick="deleteRowParty(<?=$row['id']?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></td>
                         </tr>
 
 
                     <?php endwhile;?>
+                    <tr id="row_party_add">
+                        <td ></td>
+                        <td ></td>
+                        <td class="td_buttons"><a href="createParty" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></td>
+                    </tr>
                 </table>
 
                 <table class="col-12 col-sm-12 col-md-6 offset-md-1 mb-5 tableStatements" style="color: white;">
@@ -140,7 +145,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
                             <td><?php echo $row['id'];?></td>
                             <td><?php echo $row['subject'];?></td>
                             <td class="td_buttons">
-                                <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a><button onclick="deleteRowStatement(<?/*=$row['id']*/?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button>
+                                <a href="editStatements?id=<?=$row['id']?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a><button onclick="deleteRowStatement(<?=$row['id']?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button>
                             </td>
                         </tr>
 
@@ -151,54 +156,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
                         <td class="td_buttons"><a href="createStatements" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></td>
                     </tr>
                 </table>
-
-                <!--   <div class="row">
-                        <div class="col col_ID_Party">ID</div>
-                        <div class="col col_Party">Partij</div>
-                        <div class="col"></div>
-                    </div>
-                    <?php /*while($row = $result->fetch()):*/?>
-                        <div class="row">
-                            <div class="col col_ID_Party border_top"><?php /*echo $row['id'];*/?></div>
-                            <div class="col col_Party border_top"><?php /*echo $row['name'];*/?></div>
-
-                            <?php /*$id = $row['id'] */?>
-
-                            <div class="col border_top"><a href="editParty?id=<?/*=$row['id']*/?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a> <button onclick="deleteRowParty(<?/*=$row['id']*/?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button></div>
-                        </div>
-
-
-                    <?php /*endwhile;*/?>
-                    <div class="row" id="row_party_add">
-                        <div class="col col_ID_Statements border_top"></div>
-                        <div class="col col_Statements border_top"></div>
-                        <div class="col border_top button_add"><a href="createParty" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
-                    </div>-->
             </div>
-
-            <!-- <div class="col mx-2 crud no-scrollbar" style="overflow-y: scroll; overflow-x: auto">
-                    <div class="row">
-                        <div class="col col_ID_Statements">ID</div>
-                        <div class="col col_Statements"></div>
-                        <div class="col"></div>
-                    </div>
-                    <?php /*while($row = $resultStatements->fetch()):*/?>
-
-                        <div class="row">
-                            <div class="col col_ID_Statements border_top"><?php /*echo $row['id'];*/?></div>
-                            <div class="col w-70 col_Statements border_top"><?php /*echo $row['subject'];*/?></div>
-                            <div class="col border_top">
-                                <a href="editStatements?id=<?/*=$row['id']*/?>"><img class="imgAdd" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-edit-interface-kiranshastry-solid-kiranshastry-1.png"/></a><button onclick="deleteRowStatement(<?/*=$row['id']*/?>)" class="buttonStyleHide"><img class="icon" src="https://img.icons8.com/ios-filled/64/000000/delete.png"/></button>
-                            </div>
-                        </div>
-
-                    <?php /*endwhile;*/?>
-                    <div class="row" id="row_party_add">
-                        <div class="col col_ID_Statements border_top"></div>
-                        <div class="col col_Statements border_top"></div>
-                        <div class="col border_top button_add"><a href="createStatements" class="imgAdd"><img src="https://img.icons8.com/ios-glyphs/60/000000/plus.png"/></a></div>
-                    </div>
-                </div>-->
         </div>
     </div>
     <footer class="footer_admin">
@@ -234,7 +192,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
                     }
 
                 );
-            //document.location.reload();
+            document.location.reload();
         }
 
         function deleteRowStatement(id){
@@ -254,7 +212,7 @@ if (isset($_POST['CreateParty']) && $_POST['CreateParty'] == 'CreateParty') {
                     }
 
                 );
-            // document.location.reload();
+             document.location.reload();
         }
     </script>
     </body>

@@ -267,11 +267,40 @@ table .td_buttons {
     .tableStatements{
         margin-top: 20px !important;
     }
+
+    .title_Stemadvies {
+        font-size: 40px;
+    }
+
+    .loguit {
+        font-size: 40px;
+    }
+
+    .logo_Stemadvies {
+        height: 59px;
+        width: 72px;
+    }
 }
 
 @media (min-width: 1950px) {
 
     .row_table {
         margin-top: 8rem;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .title_Stemadvies {
+        font-size: 30px;
+        padding: 0;
+    }
+
+    .loguit {
+        font-size: 30px;
+    }
+
+    .logo_Stemadvies {
+        visibility: collapse;
     }
 }
